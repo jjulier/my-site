@@ -1,5 +1,12 @@
 [
   {
+    "title": "Test link",
+    "url": "https://example.com",
+    "author": "Joe",
+    "commentary": "Just a test",
+    "dateAdded": "2026-03-04T21:39:39.304Z"
+  },
+  {
     "title": "Land and Expand – how Palantir captured the Ministry of Defence",
     "url": "https://davidallengreen.com/2026/02/land-and-expand-how-palantir-captured-the-ministry-of-defence/",
     "author": "Dave Allen Green",
