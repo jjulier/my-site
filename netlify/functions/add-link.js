@@ -5,6 +5,12 @@ const REPO_OWNER = 'jjulier';
 const REPO_NAME = 'my-site';
 const FILE_PATH = 'data/links.json';
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS'
+};
+
 function githubRequest(method, path, body) {
   return new Promise((resolve, reject) => {
     const options = {
@@ -32,9 +38,14 @@ function githubRequest(method, path, body) {
 }
 
 exports.handler = async (event) => {
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 204, headers: CORS_HEADERS, body: '' };
+  }
+
   // Only allow POST
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method not allowed' };
+    return { statusCode: 405, headers: CORS_HEADERS, body: 'Method not allowed' };
   }
 
   // Parse the incoming link data
@@ -42,7 +53,7 @@ exports.handler = async (event) => {
   try {
     newLink = JSON.parse(event.body);
   } catch (e) {
-    return { statusCode: 400, body: 'Invalid JSON' };
+    return { statusCode: 400, headers: CORS_HEADERS, body: 'Invalid JSON' };
   }
 
   // Add timestamp
@@ -70,11 +81,11 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      headers: CORS_HEADERS,
       body: JSON.stringify({ success: true })
     };
 
   } catch (e) {
-    return { statusCode: 500, body: 'Error: ' + e.message };
+    return { statusCode: 500, headers: CORS_HEADERS, body: 'Error: ' + e.message };
   }
 };
