@@ -1,11 +1,145 @@
 [
   {
-    "title": "The AT Protocol and data ownership",
-    "url": "https://atproto.com",
-    "author": "Bluesky Team",
-    "date": "2026-01-01",
-    "commentary": "A good explainer on why owning your data matters.",
-    "quote": "Your data lives with you, not with the platform.",
-    "tags": "tech, web"
+    "title": "Land and Expand – how Palantir captured the Ministry of Defence",
+    "url": "https://davidallengreen.com/2026/02/land-and-expand-how-palantir-captured-the-ministry-of-defence/",
+    "author": "Dave Allen Green",
+    "date": "2026-02-23",
+    "commentary": "This pushed at my tolerance for detail on the topic, but was worth it to slightly improve my understanding of how government procurement works. Also an interesting contrast to the other piece I read about Palantir.",
+    "quote": "The concerns I express are about how the Ministry of Defence dealt with these procurements. In respect of Palantir, their land-and-expand approach is nothing other than what any rational if cynical economic agent would do when faced with the lucrative opportunities presented to it by Ministry of Defence. They appear to have done what they could get away with and perfectly lawfully.",
+    "tags": "Palantir, Procurement",
+    "source": "Slack",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "UX Design Legends",
+    "url": "https://chatgpt.com/share/6991a8e7-6338-800c-b918-c4a96684e46a",
+    "author": "Unknown",
+    "date": "2026-02-01",
+    "commentary": "This is a chatgpt conversation where someone created a UX review skill. It's the first time I've seen this idea and also see share a full chat with chatgpt. Unfortunately no idea whose it is as I discovered via linkedin and didn't save the post.",
+    "quote": "## Personas & Lenses\n\nSimulate the following agents with non-overlapping focus:\n\n### 1. Don Norman — Mental Model Integrity\nFocus:\n- Affordances\n- Visibility of system state\n- Mapping between controls and outcomes\n- Error prevention and recovery\n- Mental model coherence\n\nAvoid aesthetic commentary.\n\n---\n\n### 2. Dieter Rams — Reduction & Necessity\nFocus:\n- Feature necessity\n- Elimination opportunities\n- Signal-to-noise ratio\n- Structural simplicity\n- Long-term maintainability\n\nAvoid micro-UX nitpicks.",
+    "tags": "AI, design, working methods",
+    "source": "Linkedin",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "How to Write a Good User Research Report",
+    "url": "https://medium.com/@benweedonresearch/how-to-write-a-good-user-research-report-7a82d0a96968",
+    "author": "Ben Weedon",
+    "date": "2025-02-26",
+    "commentary": "This is excellent advice and it was reassuring to see another researcher advocating for strong, tightly defined recommendations, as sometimes I worry I'm overstepping in my write ups.",
+    "quote": "A user research report isn't just a record of what you learned — it's a tool for driving action",
+    "tags": "user research, best practice",
+    "source": "Linkedin",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Unlocking healthtech opportunities using Certeau's \"strategies\" and \"tactics\"",
+    "url": "https://stripepartners.substack.com/p/this-months-frame-unlocking-healthtech",
+    "author": "Stripe Partners",
+    "date": "2026-02-06",
+    "commentary": "Stripe's newsletter is one of the best. This one was especially satisfying for me because it explained a feeling and half formed thought I'd had much better than I ever could.",
+    "quote": "The distinction between strategies and tactics reveals a critical blind spot: health systems are designed around strategies, while the majority of patient decision-making happens tactically. Misinformation often emerges not from tactics, but from the absence of structured pathways that allow tactical knowledge to safely interact with expert systems.",
+    "tags": "user research, health",
+    "source": "Newsletter",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Now is a good time to shut up about AI",
+    "url": "https://substack.com/@ftav/p-188368455",
+    "author": "Alphaville",
+    "date": "2026-02-20",
+    "commentary": "Wish I could write like this. Such skewering.",
+    "quote": "AI's pushiest evangelists are either full-time conference types, talking airily about how workers need to adapt in undefined ways for the Fourth Industrial Revolution, or earnest computer people who lionise their own small contributions to the rising tide of slop. Valuelessness comes in stereo. No wonder it's cathartic to tell both sides to bog off.",
+    "tags": "AI, discourse",
+    "source": "Bluesky",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Fault tolerance",
+    "url": "https://en.wikipedia.org/wiki/Fault_tolerance",
+    "author": "Contributors to Wikimedia projects",
+    "date": "2005-06-22",
+    "commentary": "I went looking for this after something at work prompted me to think about how we dedicate a disproportionate amount of time to designing for when everything is working. There must be tools and techniques out there to help us design services that fail gracefully.",
+    "quote": "A system that is designed to fail safe, or fail-secure, or fail gracefully, whether it functions at a reduced level or fails completely, does so in a way that protects people, property, or data from injury, damage, intrusion, or disclosure.",
+    "tags": "design, theory",
+    "source": "Google",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "When Designers Start Shipping Real Code",
+    "url": "https://www.youtube.com/watch?v=_acdhjOLvBs&t=1616s",
+    "author": "Emmet Connolly",
+    "date": "2025-10-08",
+    "commentary": "Spoiler: all the designers did ship a code change! Interesting because the other video I watched recently was Ryo Lu talking about wanting all the designers to become developers. There is another bit in the video where Emmet talks about the jury still being out on whether AI makes developers more productive, but says that it definitely changes the designers role.",
+    "quote": "In intercom we set a goal for ourselves for the product design team. There's about 30 designers in this group and I asked all the product designers to ship a code change in Q2 to ship a pull request like ship code to production.",
+    "tags": "design, AI",
+    "source": "Youtube",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Overfitting and the problem with use cases",
+    "url": "https://medium.com/design-bootcamp/overfitting-and-the-problem-with-use-cases-337d9f4bf4d7",
+    "author": "Joe McLean",
+    "date": "2023-05-20",
+    "commentary": "This is written by a product manager at Miro, but the point he's making applies to many, many products and services. It would have been a super useful framing when I was working at the FT.",
+    "quote": "Users bring their own creative goals to our product. They're incredibly diverse and often non-linear. I believe it's best to think of a use case as a test case to see if your basic tools are working.",
+    "tags": "design, product management",
+    "source": "Not sure",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "The Age of Academic Slop is Upon Us",
+    "url": "https://hegemon.substack.com/p/the-age-of-academic-slop-is-upon",
+    "author": "Seva Gunitsky",
+    "date": "2026-01-13",
+    "commentary": "Good to read about the impact of AI in a totally different context. It seems that in design the answer to the question of how you respond to abundance is 'taste' or 'curation'. Interesting to see a very similar conclusion reached here. Not 100% sure it's the right one.",
+    "quote": "Claude Code and its ilk are coming for the study of politics like a freight train. A single academic is going to be able to write thousands of empirical papers per year. We'll need to find new ways of organizing and disseminating political science research in the very near future for this deluge.",
+    "tags": "AI, academia, slop",
+    "source": "Bluesky",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Universal Barriers to Access",
+    "url": "https://uteschauberger.com/barrierstoaccess.html",
+    "author": "Ute Schauberger",
+    "date": "2025-01-01",
+    "commentary": "Something to share if someone asks about digital inclusion",
+    "quote": "Designing for everyone means looking beyond surface categories like demographics or digital skill. A digital interface doesn't just require technical ability — it asks for time, trust, money for data, a quiet moment, a private connection, confidence, and even awareness that the service exists.",
+    "tags": "Design, Frameworks, accessibility",
+    "source": "Colleague",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Paint the world",
+    "url": "https://wplace.live/",
+    "author": "Murilo Matsubara",
+    "date": "2025-07-21",
+    "commentary": "A kind of iteration of the The Million Dollar Homepage, 20 years later.",
+    "quote": "Wplace is a collaborative, real-time pixel canvas layered over the world map, where anyone can paint and create art together.",
+    "tags": "internet",
+    "source": "Not sure",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Design in the (AI) loop",
+    "url": "https://www.katherinewastell.com/blog/2026/3/2/design-in-the-ai-loop",
+    "author": "Katherine Wastell",
+    "date": "2026-03-02",
+    "commentary": "I think this is the pitch Notion currently makes. I wonder whether we'll reach a point where it's easier just to give the whole problem to the ai, than maintain a whole team and use ai to keep everyone focused on the same problem.",
+    "quote": "What if AI became the connective tissue of a team, something that lives in the gaps between people. That carries memory across time: the decisions made, the reasoning behind them, the things tried and abandoned.",
+    "tags": "ai, design",
+    "source": "Linkedin",
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "title": "Getting a grip",
+    "url": "https://www.rpp.works/ways-of-doing/getting-a-grip/",
+    "author": "Richard Pope",
+    "date": "2026-03-02",
+    "commentary": "This is exactly what Ryo Lu talks about in that video. Decomposing the service into it's constituent parts",
+    "quote": "the job of the designer/technologist in this world becomes designing a series of objects that can be acted on by an AI agent - they need to be grippable, for lack of a better term.",
+    "tags": "ai, design",
+    "source": "Another article",
+    "dateAdded": "2026-03-01"
   }
 ]
