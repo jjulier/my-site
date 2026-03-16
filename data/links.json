@@ -1,5 +1,16 @@
 [
   {
+    "title": "Software Bonkers — by Craig Mod",
+    "url": "https://craigmod.com/essays/software_bonkers/",
+    "author": "Craig Mod",
+    "date": "2026-03",
+    "commentary": "Why would we lock ourselves into someone else's proprietary binary is definitely a question I've been asking myself recently. There will be a reason why we will, but not clear what it will be.",
+    "quote": "We’re still in the dorks-only phase of model-assisted programming, but I can imagine soon-to-arrive interfaces where you just drag and drop components while narrating your desires with your voice, the models able to perform the “brainstorming,” “planning,” and “work” — operations that can take ten minutes or longer today — in mere seconds tomorrow. There will be a fluidity to software in the future. Version numbers will be pointless. We’ll all have our own versions. Claude Code be our partner in production. As you imagine new features, Claude produces them. Why would we lock ourselves into someone else’s proprietary binary?",
+    "tags": "AI, software, IP",
+    "source": "Claude",
+    "dateAdded": "2026-03-16T20:22:14.569Z"
+  },
+  {
     "title": "What inspired you?",
     "url": "https://designlobster.substack.com/p/169-what-inspired-you",
     "author": "Ben Strak",
