@@ -46,11 +46,11 @@ article h2 a {
 }
 
 article h2 a:hover {
-  background-color: #FBE4EC;
+  background-color: #FFFF00;
 }
 
 article h2 {
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 article {
@@ -63,7 +63,6 @@ blockquote {
 }
 
 p {
-  line-height: 1.6;
   margin-top: 8px;
 }
 
@@ -86,3 +85,11 @@ footer a {
 footer a:hover {
   background-color: #FBE4EC;
 }
+
+/* highlight all boxes
+*,
+*::before,
+*::after {
+    outline: 1px solid rgba(255,0,0,0.3);
+}
+*/
