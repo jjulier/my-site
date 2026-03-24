@@ -1,6 +1,6 @@
 [
   {
-    "title": "What went wrong with the BoM Redesign? - by Leisa Reichelt",
+    "title": "What went wrong with the BoM Redesign?",
     "url": "https://leisareichelt.substack.com/p/what-went-wrong-with-the-bom-redesign",
     "author": "Leisa Reichelt",
     "date": "2026-03-17",
@@ -22,7 +22,7 @@
     "dateAdded": "2026-03-23T21:26:31.696Z"
   },
   {
-    "title": "My Claude Code Psychosis - by Jasmine Sun",
+    "title": "My Claude Code Psychosis",
     "url": "https://jasmi.news/p/claude-code?utm_source=substack&utm_medium=email&hide_intro_popup=true",
     "author": "Jasmine Sun",
     "date": "2026-01-23",
@@ -33,7 +33,7 @@
     "dateAdded": "2026-03-17T19:33:52.604Z"
   },
   {
-    "title": "Software Bonkers — by Craig Mod",
+    "title": "Software Bonkers",
     "url": "https://craigmod.com/essays/software_bonkers/",
     "author": "Craig Mod",
     "date": "2026-03",
@@ -64,13 +64,6 @@
     "tags": "design, research, user needs",
     "source": "Slack",
     "dateAdded": "2026-03-04T21:52:19.320Z"
-  },
-  {
-    "title": "Test link",
-    "url": "https://example.com",
-    "author": "Joe",
-    "commentary": "Just a test",
-    "dateAdded": "2026-03-04T21:39:39.304Z"
   },
   {
     "title": "Land and Expand – how Palantir captured the Ministry of Defence",
@@ -209,7 +202,7 @@
     "url": "https://www.rpp.works/ways-of-doing/getting-a-grip/",
     "author": "Richard Pope",
     "date": "2026-03-02",
-    "commentary": "This is exactly what Ryo Lu talks about in that video. Decomposing the service into it's constituent parts",
+    "commentary": "This is exactly what Ryo Lu talks about in that video. Decomposing the service into it's constituent parts.",
     "quote": "the job of the designer/technologist in this world becomes designing a series of objects that can be acted on by an AI agent - they need to be grippable, for lack of a better term.",
     "tags": "ai, design",
     "source": "Another article",
