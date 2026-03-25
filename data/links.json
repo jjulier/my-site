@@ -1,5 +1,16 @@
 [
   {
+    "title": "The Dev Orgs Are Restructuring Around AI. What Does This Mean for UXR?",
+    "url": "https://www.thevoiceofuser.com/the-dev-orgs-are-restructuring-around-ai-what-does-this-mean-for-uxr/",
+    "author": "Constantine Papas",
+    "date": "2026-03-24",
+    "commentary": "Not a huge fan of this piece which definitely smells of AI, but this is a great point worth remembering. Solving an actual real life problem is very hard to do without spending time with actual real life people!",
+    "quote": "The researcher who can walk into a planning conversation and say this problem is not worth solving because users do not actually have it, and here is the evidence, is providing something the organization cannot generate from its own velocity. No agent produces that. No dashboard surfaces it. No amount of iteration discovers it, because iteration optimizes within a frame. Knowing whether the frame is right in the first place is the work. That is the version of the job that survives. Not because it is the version researchers prefer. Because it is the version nobody else can do.",
+    "tags": "research, design, product",
+    "source": "Linkedin",
+    "dateAdded": "2026-03-25T11:15:26.380Z"
+  },
+  {
     "title": "What went wrong with the BoM Redesign?",
     "url": "https://leisareichelt.substack.com/p/what-went-wrong-with-the-bom-redesign",
     "author": "Leisa Reichelt",
