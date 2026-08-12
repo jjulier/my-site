@@ -1,5 +1,16 @@
 [
   {
+    "title": "Some thoughts about Anthropic’s new cryptanalysis results – A Few Thoughts on Cryptographic Engineering",
+    "url": "https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/",
+    "author": "",
+    "date": "2026-07-29",
+    "commentary": "",
+    "quote": " Working with these tools is like swimming in a pond where the ground drops off sharply. One minute you’re wading comfortably and there’s support under your feet. Then suddenly you cross a specific line, and you’re back to swimming on your own. This analogy is my best way to explain what it feels like when the model goes from helpful to clueless. Right now it’s easy for a human being to find that line if you’re doing advanced research, so you know where the intelligence drops off. But the line is moving. You can feel it slowly drifting outwards under your feet.",
+    "tags": "AI",
+    "source": "Substack",
+    "dateAdded": "2026-08-12T21:59:03.678Z"
+  },
+  {
     "title": "The Premium Mediocre Life of Maya Millennial — Ribbonfarm",
     "url": "https://ribbonfarm.com/2017/08/17/the-premium-mediocre-life-of-maya-millennial/",
     "author": "Venkat",
