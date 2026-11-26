@@ -63,12 +63,24 @@
       line-height: 1.25;
     }
     .quote p { margin: 0; text-wrap: balance; }
-    .quote.m-full, .quote.m-note { text-align: left; }
-    .quote.m-full p, .quote.m-note p { text-wrap: pretty; }
+    .quote.m-full { text-align: left; }
+    .quote.m-full p { text-wrap: pretty; }
     .quote.m-full { color: #9a9893; }
     .quote.m-full mark { background: none; color: #141414; }
-    .quote.m-note { font-style: italic; }
-    .quote.m-note a { text-decoration: underline; text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
+    /* The note hangs under the quote like an annotation, so the quote doesn't move. */
+    .quote { position: relative; }
+    .quote .note {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding-top: calc(3 * var(--u));
+      font-size: calc(3.6 * var(--u));
+      color: #141414;
+      font-style: italic;
+    }
+    .quote .note p { text-wrap: pretty; }
+    .quote .note a { text-decoration: underline; text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
 
     /* Wall */
     .wall-head { padding: 24px 24px 0; }
@@ -115,7 +127,6 @@
       line-height: 1.4;
     }
     .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .meta .group { color: #77756f; }
     .controls {
       position: fixed;
       right: 24px;
@@ -202,22 +213,24 @@
       return paras(esc(text).replace(/\[([^\]]+)\]\(([^()\s]+(?:\([^()\s]*\)[^()\s]*)?)\)/g, '<a href="$2">$1</a>'));
     }
 
-    function bodyHTML(p, mode) {
-      if (mode === 'full') return paras(esc(p.marked)).replace(/\u0001([^]*?)\u0002/g, '<mark>$1</mark>');
-      if (mode === 'note') return noteHTML(p.note);
-      return paras(esc(p.excerpt));
+    const hasFull = p => p.excerpt !== p.quote;
+
+    function fullHTML(p) {
+      return paras(esc(p.marked)).replace(/\u0001([^]*?)\u0002/g, '<mark>$1</mark>');
     }
 
-    function posterHTML(p, i, tag, mode) {
-      mode = mode || 'poster';
-      const text = mode === 'note' ? p.note : mode === 'full' ? p.quote : p.excerpt;
+    // Full quote and Note are separate: Note hangs under whichever quote is showing.
+    function posterHTML(p, i, tag, full, note) {
+      const mode = full ? 'full' : 'poster';
+      const body = full ? fullHTML(p) : paras(esc(p.excerpt));
       const attrs = tag === 'a' ? ' href="#' + (i + 1) + '" aria-label="' + esc(p.title) + '"' : '';
       return '<' + tag + ' class="poster"' + attrs + '>' +
         '<div class="poster-inner">' +
           (p.drawing ? '<div class="drawing">' + p.drawing + '</div>' : '') +
-          '<div class="quote m-' + mode + '" style="--size:' + sizeFor(text, mode) + '">' + bodyHTML(p, mode) + '</div>' +
+          '<div class="quote m-' + mode + '" style="--size:' + sizeFor(full ? p.quote : p.excerpt, mode) + '">' + body +
+            (note ? '<div class="note">' + noteHTML(p.note) + '</div>' : '') + '</div>' +
         '</div>' +
-        '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + ' on Wikipedia</a><br><span class="group">' + esc(p.group) + '</span></div>' +
+        '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a></div>' +
         '</' + tag + '>';
     }
 
@@ -233,19 +246,21 @@
 
     const single = document.getElementById('single');
     let current = -1;
-    let mode = 'poster';
+    let full = false;
+    let note = false;
 
     function show(i) {
       single.classList.toggle('fresh', i !== current);
       current = (i + ideas.length) % ideas.length;
       const p = ideas[current];
-      // Full quote or My note stays on as you move between ideas, for those that have one.
-      const shown = mode === 'full' && p.excerpt !== p.quote ? 'full' : mode === 'note' && p.note ? 'note' : 'poster';
-      const toggle = (m, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + (shown === m) + '">' + label + '</button>';
-      single.innerHTML = posterHTML(p, current, 'div', shown) +
+      // Full quote and Note stay on as you move between ideas, for those that have one.
+      const showFull = full && hasFull(p);
+      const showNote = note && !!p.note;
+      const toggle = (m, on, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + on + '">' + label + '</button>';
+      single.innerHTML = posterHTML(p, current, 'div', showFull, showNote) +
         '<div class="controls">' +
-          (p.excerpt !== p.quote ? toggle('full', 'Full quote') : '') +
-          (p.note ? toggle('note', 'My note') : '') +
+          (hasFull(p) ? toggle('full', showFull, 'Full quote') : '') +
+          (p.note ? toggle('note', showNote, 'Note') : '') +
           '<span class="count">' + (current + 1) + ' of ' + ideas.length + '</span>' +
           '<button type="button" data-go="-1">Previous</button>' +
           '<button type="button" data-go="1">Next</button>' +
@@ -272,7 +287,11 @@
 
     single.addEventListener('click', e => {
       const m = e.target.closest('[data-mode]');
-      if (m) { mode = mode === m.dataset.mode ? 'poster' : m.dataset.mode; return show(current); }
+      if (m) {
+        if (m.dataset.mode === 'full') full = m.getAttribute('aria-pressed') !== 'true';
+        else note = m.getAttribute('aria-pressed') !== 'true';
+        return show(current);
+      }
       const btn = e.target.closest('[data-go]');
       if (btn) return go(+btn.dataset.go);
       if (e.target.closest('a, .controls')) return;
