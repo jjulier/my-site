@@ -12,41 +12,27 @@ Each link is a section: a `## [Title](url)` heading, then `Author, date`, then t
 ## [Some thoughts about Anthropic’s new cryptanalysis results – A Few Thoughts on Cryptographic Engineering](https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/)
 2026-07-29
 
-> Working with these tools is like swimming in a pond where the ground drops off sharply. One minute you’re wading comfortably and there’s support under your feet. Then suddenly you cross a specific line, and you’re back to swimming on your own. This analogy is my best way to explain what it feels like when the model goes from helpful to clueless. Right now it’s easy for a human being to find that line if you’re doing advanced research, so you know where the intelligence drops off. But the line is moving. You can feel it slowly drifting outwards under your feet.
+> ==Working with these tools is like swimming in a pond where the ground drops off sharply.== One minute you’re wading comfortably and there’s support under your feet. Then suddenly you cross a specific line, and you’re back to swimming on your own. This analogy is my best way to explain what it feels like when the model goes from helpful to clueless. Right now it’s easy for a human being to find that line if you’re doing advanced research, so you know where the intelligence drops off. But the line is moving. You can feel it slowly drifting outwards under your feet.
 
 ## [The Premium Mediocre Life of Maya Millennial — Ribbonfarm](https://ribbonfarm.com/2017/08/17/the-premium-mediocre-life-of-maya-millennial/)
 Venkat, 2017-08-17
 
-Anything branded as "signature" is premium mediocre of course.
+==Anything branded as "signature" is premium mediocre of course.==
 
 ## [How GPs are paid: the 2026 update — Dr Neil Paul](https://www.drneilpaul.blog/how-gps-are-paid-2026/)
 Dr Neil Paul, 2026-07-30
 
-> The core of it still stands. A GP practice is a small business. Most partners aren’t salaried — we own the business, and what we take home is whatever is left at the end. Profit = income minus expenses.
-
-NHS as a federation of small and medium sized businesses
-
-## [Why Are Berries Everywhere, in Every Season? Driscoll’s. - The New York Times](https://www.nytimes.com/2026/07/07/dining/driscolls-berries.html)
-https://www.nytimes.com/by/julia-moskin, 2026-07-07
-
-> It requires a substantial start-up investment by Driscoll’s growers, who also absorb the costs of ever-shifting factors like labor, weather, equipment and rent. The company provides seed plants and “inputs” like soil treatments, along with technical support and marketing dollars.
-
-Platform capitalism, but for berries.
-
-## [Why we need to focus on how humans interact with AI tools | Apolitical](https://apolitical.co/en/articles/why-we-need-to-focus-on-how-humans-interact-with-ai-tools)
-Thea Snow, 2019-03-04
-
-> even with the introduction of algorithmic tools, humans are being encouraged to apply expert intuition. I will call this “artificing” — the form of satisficing which persists following the introduction of algorithmic decision tools.
+> The core of it still stands. ==A GP practice is a small business. Most partners aren’t salaried — we own the business, and what we take home is whatever is left at the end.== Profit = income minus expenses.
 
 ## [(1) Re-shaping (public sector) user centred design for an AI assisted world](https://leisareichelt.substack.com/p/re-shaping-public-sector-user-centred?triedRedirect=true)
 Leisa Reichelt, 2026-05-19
 
-> rather than requiring a full discovery in advance as a rule, perhaps we let teams decide if and when discovery is required. Or whether, instead, the most productive thing is to gain consensus on what we think we know about the user and get cracking exploring ways that might best meet their needs
+> ==rather than requiring a full discovery in advance as a rule, perhaps we let teams decide if and when discovery is required==. Or whether, instead, the most productive thing is to gain consensus on what we think we know about the user and get cracking exploring ways that might best meet their needs
 
 ## [When Implementation is Free. What happens when AI drives the… | by Joe McLean | Medium](https://medium.com/@islandlife/when-implementation-is-free-14ced3554f9c)
 Joe McLean, 2025-03-07
 
-> For decades, product development has been defined by scarcity. Agile, Scrum, and Kanban are in essence systems for allocating limited engineering capacity. Ruthless prioritization was the core skill. Deploy your company’s most expensive resource — engineering time — against the initiatives most likely to have impact.
+> ==For decades, product development has been defined by scarcity==. Agile, Scrum, and Kanban are in essence systems for allocating limited engineering capacity. Ruthless prioritization was the core skill. Deploy your company’s most expensive resource — engineering time — against the initiatives most likely to have impact.
 >
 > But what happens when AI can transform product specifications into working code in minutes? The classic “effort vs. impact” quadrant analysis is a vertical line. Everything is “low effort, variable impact.”
 
@@ -55,22 +41,22 @@ Turning development upside down
 ## [I Was an Enthusiastic Early Adopter of AI Scribes. Here’s Why I Stopped](https://benngooch.substack.com/p/i-was-an-enthusiastic-early-adopter?r=318dr5&utm_medium=ios&triedRedirect=true)
 Dr Benn Gooch, 2026-03-02
 
-> There is a body of research on what cognitive scientists call “extended mind theory” — the idea that human cognition is not confined to the brain but extends into the tools and artefacts we use. Writing is perhaps the oldest and most profound of these cognitive tools. When we write clinical notes in our own voice, we are not transcribing our thoughts after the fact: we are completing them.
+> There is a body of research on what cognitive scientists call “extended mind theory” — the idea that human cognition is not confined to the brain but extends into the tools and artefacts we use. Writing is perhaps the oldest and most profound of these cognitive tools. ==When we write clinical notes in our own voice, we are not transcribing our thoughts after the fact: we are completing them.==
 
 Such an excellent piece about the way technology shapes things
 
 ## [The Hacker News tarpit](https://www.joanwestenberg.com/the-hacker-news-tarpit/)
 JA Westenberg, 2026-04-06
 
-> You can't build Place People Go as a feature. It's a thing that happened over time, through a specific and unrepeatable sequence of events, most of which were not planned and some of which were just luck.
+> ==You can't build Place People Go as a feature.== It's a thing that happened over time, through a specific and unrepeatable sequence of events, most of which were not planned and some of which were just luck.
 
 Add comment later
 
 ## [Personal Software](https://leerob.com/personal-software)
 Lee Robinson, 2025-01
 
-> Home-cooked applications
-> Creating software now feels like cooking.
+
+> ==Creating software now feels like cooking.==
 >
 > If you want a meal for yourself, you can do that without needing a professional chef. The results might not compare to a top restaurant, but that’s not the point.
 >
@@ -85,14 +71,14 @@ Super helpful analogy
 ## [The age of vertical models is here](https://www.linkedin.com/pulse/age-vertical-models-here-eoghan-mccabe-nsy6c/)
 Eoghan McCabe, 2026-03-01
 
-> We believe that the winners in such spaces must and will become full stack AI companies. And we’ve already seen this just last week with Cursor making the first such move, with Fin being the second. As features become ~free to build, the technology factors that will differentiate the players will be the AI under the hood, and if you’re using the same general purpose off-the-shelf model as everyone else, you have no durable differentiation.
+> We believe that the winners in such spaces must and will become full stack AI companies. And we’ve already seen this just last week with Cursor making the first such move, with Fin being the second. As features become ~free to build, the technology factors that will differentiate the players will be the AI under the hood, and ==if you’re using the same general purpose off-the-shelf model as everyone else, you have no durable differentiation==.
 
 I've seen this argument made elsewhere as well. It's interesting to think that SaaS won't necessarily die, but just be a bunch of different AI models.
 
 ## [The Dev Orgs Are Restructuring Around AI. What Does This Mean for UXR?](https://www.thevoiceofuser.com/the-dev-orgs-are-restructuring-around-ai-what-does-this-mean-for-uxr/)
 Constantine Papas, 2026-03-24
 
-> The researcher who can walk into a planning conversation and say this problem is not worth solving because users do not actually have it, and here is the evidence, is providing something the organization cannot generate from its own velocity. No agent produces that. No dashboard surfaces it. No amount of iteration discovers it, because iteration optimizes within a frame. Knowing whether the frame is right in the first place is the work. That is the version of the job that survives. Not because it is the version researchers prefer. Because it is the version nobody else can do.
+> The researcher who can walk into a planning conversation and say this problem is not worth solving because users do not actually have it, and here is the evidence, is providing something the organization cannot generate from its own velocity. No agent produces that. No dashboard surfaces it. No amount of iteration discovers it, because iteration optimizes within a frame. ==Knowing whether the frame is right in the first place is the work==. That is the version of the job that survives. Not because it is the version researchers prefer. Because it is the version nobody else can do.
 
 Not a huge fan of this piece which definitely smells of AI, but this is a great point worth remembering. Solving an actual real life problem is very hard to do without spending time with actual real life people!
 
