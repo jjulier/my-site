@@ -237,11 +237,12 @@
 
     function show(i) {
       single.classList.toggle('fresh', i !== current);
-      if (i !== current) mode = 'poster';
       current = (i + ideas.length) % ideas.length;
       const p = ideas[current];
-      const toggle = (m, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + (mode === m) + '">' + label + '</button>';
-      single.innerHTML = posterHTML(p, current, 'div', mode) +
+      // Full quote or My note stays on as you move between ideas, for those that have one.
+      const shown = mode === 'full' && p.excerpt !== p.quote ? 'full' : mode === 'note' && p.note ? 'note' : 'poster';
+      const toggle = (m, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + (shown === m) + '">' + label + '</button>';
+      single.innerHTML = posterHTML(p, current, 'div', shown) +
         '<div class="controls">' +
           (p.excerpt !== p.quote ? toggle('full', 'Full quote') : '') +
           (p.note ? toggle('note', 'My note') : '') +

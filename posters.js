@@ -256,11 +256,11 @@ function generatePostersPage(links) {
 
     function show(i) {
       single.classList.toggle('fresh', i !== current);
-      if (i !== current) full = false;
       current = (i + posters.length) % posters.length;
       const p = posters[current];
       const s = styles[p.style];
-      single.innerHTML = posterHTML(p, current, 'div', full) +
+      // Full quote stays on as you move between posters, for those that have more to show.
+      single.innerHTML = posterHTML(p, current, 'div', full && p.excerpt !== p.quote) +
         '<div class="controls" style="--ink:' + s.ink + '">' +
           (p.excerpt !== p.quote ? '<button type="button" data-full>' + (full ? 'Excerpt' : 'Full quote') + '</button>' : '') +
           '<span class="count">' + (current + 1) + ' of ' + posters.length + '</span>' +
