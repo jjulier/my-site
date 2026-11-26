@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 
-NOTES="${NOTES:-$HOME/Documents/Obsidian Vault/Website}"
+NOTES="${NOTES:-$HOME/Desktop/notes/Website}"
 cp "$NOTES/Link quotes.md" data/links.md
 cp "$NOTES/Wikipedia ideas.md" data/ideas.md
 node build.js
