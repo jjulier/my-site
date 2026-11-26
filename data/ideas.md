@@ -1,3 +1,5 @@
+# Wikipedia ideas
+
 Each idea is a section: a `## [Name](Wikipedia link)` heading, then its group, then a quote from the Wikipedia page as a `>` block. Highlight the part to show on the poster with ==double equals==. Anything after the quote is your note about it.
 
 ## [Convergent evolution](https://en.wikipedia.org/wiki/Convergent_evolution)

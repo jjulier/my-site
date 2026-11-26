@@ -3,9 +3,9 @@
 set -e
 cd "$(dirname "$0")"
 
-VAULT="${VAULT:-$HOME/Documents/Obsidian Vault}"
-cp "$VAULT/Link quotes.md" data/links.md
-cp "$VAULT/Wikipedia ideas.md" data/ideas.md
+NOTES="${NOTES:-$HOME/Documents/Obsidian Vault/Website}"
+cp "$NOTES/Link quotes.md" data/links.md
+cp "$NOTES/Wikipedia ideas.md" data/ideas.md
 node build.js
 
 git add data/links.md data/ideas.md links/index.html posters/index.html ideas/
