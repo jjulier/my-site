@@ -43,6 +43,8 @@ function generateLinksPage(links) {
   <nav>
     <a href="/">Home</a>
     <a href="/links">Links</a>
+    <a href="/posters">Posters</a>
+    <a href="/ideas">Ideas</a>
   </nav>
 
   <h1><a href="#">link</a> <span class="word-quote">quote</span> notes</h1>
