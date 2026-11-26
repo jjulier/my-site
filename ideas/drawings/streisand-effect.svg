@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M150 170 L150 270 M250 170 L250 270"/>
+<rect class="fill" x="110" y="84" width="180" height="88"/>
+<text class="hand" x="200" y="122">DO NOT LOOK</text>
+<text class="hand" x="200" y="152">AT THIS</text>
+<g><ellipse cx="40" cy="50" rx="11" ry="7"/><ellipse cx="66" cy="50" rx="11" ry="7"/><circle class="ink" cx="45" cy="53" r="3"/><circle class="ink" cx="71" cy="53" r="3"/></g>
+<g><ellipse cx="322" cy="40" rx="11" ry="7"/><ellipse cx="348" cy="40" rx="11" ry="7"/><circle class="ink" cx="317" cy="43" r="3"/><circle class="ink" cx="343" cy="43" r="3"/></g>
+<g><ellipse cx="184" cy="36" rx="11" ry="7"/><ellipse cx="210" cy="36" rx="11" ry="7"/><circle class="ink" cx="184" cy="40" r="3"/><circle class="ink" cx="210" cy="40" r="3"/></g>
+<g><ellipse cx="40" cy="190" rx="11" ry="7"/><ellipse cx="66" cy="190" rx="11" ry="7"/><circle class="ink" cx="45" cy="187" r="3"/><circle class="ink" cx="71" cy="187" r="3"/></g>
+<g><ellipse cx="334" cy="200" rx="11" ry="7"/><ellipse cx="360" cy="200" rx="11" ry="7"/><circle class="ink" cx="329" cy="197" r="3"/><circle class="ink" cx="355" cy="197" r="3"/></g>
+<g><ellipse cx="80" cy="260" rx="11" ry="7"/><ellipse cx="106" cy="260" rx="11" ry="7"/><circle class="ink" cx="85" cy="256" r="3"/><circle class="ink" cx="111" cy="256" r="3"/></g>
+<g><ellipse cx="294" cy="268" rx="11" ry="7"/><ellipse cx="320" cy="268" rx="11" ry="7"/><circle class="ink" cx="289" cy="264" r="3"/><circle class="ink" cx="315" cy="264" r="3"/></g>
+<g><ellipse cx="350" cy="120" rx="11" ry="7"/><ellipse cx="376" cy="120" rx="11" ry="7"/><circle class="ink" cx="345" cy="121" r="3"/><circle class="ink" cx="371" cy="121" r="3"/></g>
+</g></svg>

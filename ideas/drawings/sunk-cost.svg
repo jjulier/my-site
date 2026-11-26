@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M20 120 L150 120 M250 120 L380 120"/>
+<path d="M150 120 L162 280 L238 280 L250 120"/>
+<circle class="fill" cx="196" cy="214" r="10"/>
+<path d="M196 224 L198 260 M198 260 L188 280 M198 260 L208 280 M197 236 L214 244 L222 236"/>
+<path d="M232 184 L214 262 M209 260 L204 276 L218 278 L220 262 Z"/>
+<path d="M266 120 Q312 64 364 120"/>
+<circle class="ink" cx="236" cy="96" r="3"/><circle class="ink" cx="252" cy="80" r="2"/><circle class="ink" cx="226" cy="74" r="2"/>
+<path d="M84 120 L84 70"/>
+<rect class="fill" x="22" y="36" width="124" height="34"/>
+<text class="hand" x="84" y="60">NEARLY THERE</text>
+</g></svg>

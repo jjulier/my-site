@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<circle class="fill" cx="250" cy="104" r="42"/>
+<circle class="ink" cx="264" cy="96" r="3"/>
+<path d="M254 126 Q266 118 278 126"/>
+<path d="M250 146 L250 252 M250 252 L230 290 M250 252 L270 290 M250 176 L214 200"/>
+<path d="M208 198 L196 158"/>
+<path class="fill" d="M150 82 Q190 60 232 82 Q236 130 192 162 Q148 130 150 82 Z"/>
+<ellipse class="ink" cx="174" cy="100" rx="9" ry="6"/>
+<ellipse class="ink" cx="210" cy="100" rx="9" ry="6"/>
+<path d="M168 124 Q192 148 216 124"/>
+</g></svg>

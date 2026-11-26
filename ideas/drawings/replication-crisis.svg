@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M70 90 L70 200 Q70 215 85 215 L145 215 Q160 215 160 200 L160 90"/>
+<path d="M70 140 Q92 132 115 140 Q138 148 160 140"/>
+<circle cx="100" cy="122" r="5"/><circle cx="130" cy="108" r="4"/><circle cx="112" cy="96" r="3"/>
+<circle class="ink" cx="100" cy="166" r="3"/><circle class="ink" cx="130" cy="166" r="3"/>
+<path d="M98 184 Q115 198 132 184"/>
+<path d="M240 90 L240 200 Q240 215 255 215 L315 215 Q330 215 330 200 L330 90"/>
+<path d="M240 140 Q262 132 285 140 Q308 148 330 140"/>
+<circle class="ink" cx="270" cy="166" r="3"/><circle class="ink" cx="300" cy="166" r="3"/>
+<path d="M268 192 Q285 180 302 192"/>
+<text class="hand" x="115" y="260">IT WORKED</text>
+<text class="hand" x="285" y="260">IT DID NOT</text>
+</g></svg>

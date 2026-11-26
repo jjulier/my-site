@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M90 278 L104 236 L118 278 M104 236 L104 186 M104 200 L130 160 M104 204 L84 228"/>
+<circle class="fill" cx="104" cy="174" r="12"/>
+<path d="M99 180 Q104 177 109 180"/>
+<path d="M130 160 Q138 132 142 114"/>
+<ellipse class="fill" cx="146" cy="82" rx="26" ry="32"/>
+<path d="M142 114 L150 114"/>
+<ellipse class="fill" cx="270" cy="70" rx="18" ry="22"/><path d="M270 92 Q262 116 274 136"/>
+<ellipse class="fill" cx="330" cy="120" rx="16" ry="20"/><path d="M330 140 Q340 160 328 180"/>
+<ellipse class="fill" cx="356" cy="40" rx="13" ry="16"/><path d="M356 56 Q350 72 360 86"/>
+<text class="hand" x="300" y="230">ALL THE OTHER</text>
+<text class="hand" x="300" y="252">BALLOONS</text>
+</g></svg>

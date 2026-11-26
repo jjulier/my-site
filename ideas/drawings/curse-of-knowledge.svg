@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<circle class="fill" cx="118" cy="104" r="62"/>
+<path d="M84 84 Q98 64 114 84 Q128 104 140 78 Q150 60 160 86 M80 112 Q96 96 108 118 Q122 138 136 112 Q148 92 156 120 M96 140 Q112 126 124 142 Q134 154 144 138"/>
+<path d="M118 166 L118 240 M118 240 L104 288 M118 240 L132 288 M118 186 L172 176 M118 192 L96 220"/>
+<circle class="fill" cx="306" cy="212" r="12"/>
+<path d="M306 224 L306 262 M306 262 L298 288 M306 262 L314 288 M306 234 L294 250 M306 234 L318 250"/>
+<text class="hand" x="306" y="186">?</text>
+<text class="hand" x="290" y="70">IT IS</text>
+<text class="hand" x="290" y="96">OBVIOUS</text>
+</g></svg>

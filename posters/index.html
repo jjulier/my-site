@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>link quote posters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital@0;1&family=Libre+Caslon+Text:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      background: #F4F1EA;
+      color: #1C1A17;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* A poster. Everything inside is sized in --u, which scales with the poster. */
+    .poster {
+      container-type: size;
+      position: relative;
+      background: var(--bg);
+      color: var(--ink);
+      overflow: hidden;
+    }
+    .poster-inner {
+      --u: min(1cqi, 0.72cqb);
+      position: absolute;
+      inset: 0;
+      padding: calc(9 * var(--u));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: var(--font);
+    }
+    .quote {
+      max-width: calc(84 * var(--u));
+      font-size: calc(var(--size) * var(--u));
+      line-height: 1.22;
+      letter-spacing: -0.005em;
+      font-style: var(--style);
+      hyphens: manual;
+    }
+    .quote p { margin: 0; text-wrap: pretty; }
+    .quote p + p { margin-top: 0.6em; }
+    .quote.short p { text-wrap: balance; }
+    .quote.full { color: color-mix(in srgb, var(--ink) 42%, var(--bg)); }
+    .quote.full mark { background: none; color: var(--ink); }
+
+    /* Wall */
+    .wall-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 24px 24px 0;
+    }
+    .wall-head nav a { margin-right: 20px; color: #0000FF; }
+    .wall-head nav a:hover { background: #FBE4EC; }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 48px 24px 32px;
+    }
+    h1 em { font-weight: 400; }
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      padding: 0 24px 64px;
+    }
+    .wall .poster {
+      aspect-ratio: 1 / 1.33;
+      cursor: pointer;
+      transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+    }
+    .wall .poster:hover, .wall .poster:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px -14px rgba(0,0,0,.45);
+      outline: none;
+    }
+    .wall .meta { display: none; }
+
+    /* Single poster, filling the screen */
+    .single { display: none; }
+    body.is-single { overflow: hidden; }
+    body.is-single .single { display: block; position: fixed; inset: 0; }
+    body.is-single .wall-view { display: none; }
+    .single .poster { position: absolute; inset: 0; }
+    .single .poster-inner { --u: min(1cqi, 0.62cqb); align-items: flex-start; padding-left: max(calc(9 * var(--u)), calc(50cqi - 46 * var(--u))); }
+    .meta {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      right: 280px;
+      font-family: 'Playfair Display', serif;
+      font-style: normal;
+      line-height: 1.4;
+    }
+    .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .meta .author { opacity: .7; }
+    .controls {
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      display: flex;
+      gap: 20px;
+      color: var(--ink);
+      z-index: 2;
+    }
+    .controls > * { white-space: nowrap; }
+    .controls a, .controls button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+    .controls a:hover, .controls button:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .controls .count { opacity: .7; font-variant-numeric: tabular-nums; }
+    .single.fresh .poster { animation: fade .5s ease; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (max-width: 640px) {
+      .wall-head, .wall { padding-left: 16px; padding-right: 16px; }
+      h1 { margin-left: 16px; margin-right: 16px; }
+      .wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .single .poster-inner { --u: min(1cqi, 0.6cqb); padding: 12cqi 8cqi 30cqi; }
+      .meta { left: 16px; right: 16px; bottom: 64px; }
+      .controls { left: 16px; right: 16px; bottom: 22px; gap: 16px; justify-content: flex-start; }
+      .controls .count { display: none; }
+      .controls a { margin-left: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .single .poster { animation: none; }
+      .wall .poster { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wall-view">
+    <div class="wall-head">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/posters">Posters</a>
+        <a href="/ideas">Ideas</a>
+      </nav>
+    </div>
+    <h1>link <em>quote</em> posters</h1>
+    <main class="wall" id="wall"></main>
+  </div>
+
+  <div class="single" id="single" aria-live="polite"></div>
+
+  <script>
+    const { posters, styles } = {"posters":[{"quote":"Second, tasks were sometimes framed around site features rather than underlying goals. For example:\n\nYou have saved some locations as favourites and want to access them now. How would you do that?\n\nFeature-led tasks reduce friction in testing and make it harder to detect whether the design meaningfully supports the task. Neither of these choices are outrageous. Both are common.\n\nBut both bias results toward reassurance rather than discovery.","marked":"Second, tasks were sometimes framed around site features rather than underlying goals. For example:\n\nYou have saved some locations as favourites and want to access them now. How would you do that?\n\nFeature-led tasks reduce friction in testing and make it harder to detect whether the design meaningfully supports the task. Neither of these choices are outrageous. Both are common.\n\n\u0001But both bias results toward reassurance rather than discovery.\u0002","excerpt":"But both bias results toward reassurance rather than discovery.","title":"What went wrong with the BoM Redesign?","url":"https://leisareichelt.substack.com/p/what-went-wrong-with-the-bom-redesign","author":"Leisa Reichelt","style":0},{"quote":"The Gell-Mann amnesia effect is a cognitive bias describing the tendency of individuals to critically assess media reports in a domain they are knowledgeable about, yet continue to trust reporting in other areas despite recognizing similar potential inaccuracies.","marked":"The Gell-Mann amnesia effect is a cognitive bias describing the tendency of individuals to \u0001critically assess media reports in a domain they are knowledgeable about, yet continue to trust reporting in other areas\u0002 despite recognizing similar potential inaccuracies.","excerpt":"critically assess media reports in a domain they are knowledgeable about, yet continue to trust reporting in other areas","title":"People are not friction","url":"https://daverupert.com/2026/03/people-are-not-friction/?utm_campaign=ux-works-through-social-relationships-ai-tools-are-erasing-them&utm_medium=referral&utm_source=productpicnic.beehiiv.com","author":"Dave Rupert","style":1},{"quote":"If you tell a friend they can now instantly create any app, they’ll probably say “Cool! Now I need to think of an idea.” Then they will forget about it, and never build a thing. The problem is not that your friend is horribly uncreative. It’s that most people’s problems are not software-shaped, and most won’t notice even when they are.","marked":"If you tell a friend they can now instantly create any app, they’ll probably say “Cool! Now I need to think of an idea.” Then they will forget about it, and never build a thing. The problem is not that your friend is horribly uncreative. It’s that \u0001most people’s problems are not software-shaped, and most won’t notice even when they are.\u0002","excerpt":"most people’s problems are not software-shaped, and most won’t notice even when they are.","title":"My Claude Code Psychosis","url":"https://jasmi.news/p/claude-code?utm_source=substack&utm_medium=email&hide_intro_popup=true","author":"Jasmine Sun","style":2},{"quote":"We’re still in the dorks-only phase of model-assisted programming, but I can imagine soon-to-arrive interfaces where you just drag and drop components while narrating your desires with your voice, the models able to perform the “brainstorming,” “planning,” and “work” — operations that can take ten minutes or longer today — in mere seconds tomorrow. There will be a fluidity to software in the future. Version numbers will be pointless. We’ll all have our own versions. Claude Code be our partner in production. As you imagine new features, Claude produces them. Why would we lock ourselves into someone else’s proprietary binary?","marked":"We’re still in the dorks-only phase of model-assisted programming, but I can imagine soon-to-arrive interfaces where you just drag and drop components while narrating your desires with your voice, the models able to perform the “brainstorming,” “planning,” and “work” — operations that can take ten minutes or longer today — in mere seconds tomorrow. \u0001There will be a fluidity to software in the future. Version numbers will be pointless. We’ll all have our own versions.\u0002 Claude Code be our partner in production. As you imagine new features, Claude produces them. Why would we lock ourselves into someone else’s proprietary binary?","excerpt":"There will be a fluidity to software in the future. Version numbers will be pointless. We’ll all have our own versions.","title":"Software Bonkers","url":"https://craigmod.com/essays/software_bonkers/","author":"Craig Mod","style":3},{"quote":"Taste gets talked about as though it were the highest creative faculty: the one thing the machines will never be able to take from us. The one thing, no less, we’ll need if we want to have a job in a few years.","marked":"\u0001Taste gets talked about as though it were the highest creative faculty\u0002: the one thing the machines will never be able to take from us. The one thing, no less, we’ll need if we want to have a job in a few years.","excerpt":"Taste gets talked about as though it were the highest creative faculty","title":"What inspired you?","url":"https://designlobster.substack.com/p/169-what-inspired-you","author":"Ben Strak","style":4},{"quote":"Sometimes user needs unintentionally frame users as ‘request makers’ who are making demands of the service. The ‘7 lenses’ framework shifts the conversation away from what users are asking the service to do, and towards how they are actually experiencing it.","marked":"\u0001Sometimes user needs unintentionally frame users as ‘request makers’ who are making demands of the service.\u0002 The ‘7 lenses’ framework shifts the conversation away from what users are asking the service to do, and towards how they are actually experiencing it.","excerpt":"Sometimes user needs unintentionally frame users as ‘request makers’ who are making demands of the service.","title":"Understanding user experience in lung cancer screening beyond user needs - NHS","url":"https://design-history.prevention-services.nhs.uk/lung-health-check/2026/03/beyond-user-needs/","author":"Mike Watson","style":5},{"quote":"The concerns I express are about how the Ministry of Defence dealt with these procurements. In respect of Palantir, their land-and-expand approach is nothing other than what any rational if cynical economic agent would do when faced with the lucrative opportunities presented to it by Ministry of Defence. They appear to have done what they could get away with and perfectly lawfully.","marked":"The concerns I express are about how the Ministry of Defence dealt with these procurements. In respect of Palantir, their land-and-expand approach is nothing other than what any rational if cynical economic agent would do when faced with the lucrative opportunities presented to it by Ministry of Defence. \u0001They appear to have done what they could get away with and perfectly lawfully.\u0002","excerpt":"They appear to have done what they could get away with and perfectly lawfully.","title":"Land and Expand – how Palantir captured the Ministry of Defence","url":"https://davidallengreen.com/2026/02/land-and-expand-how-palantir-captured-the-ministry-of-defence/","author":"Dave Allen Green","style":6},{"quote":"## Personas & Lenses\n\nSimulate the following agents with non-overlapping focus:\n\n### 1. Don Norman — Mental Model Integrity\nFocus:\n- Affordances\n- Visibility of system state\n- Mapping between controls and outcomes\n- Error prevention and recovery\n- Mental model coherence\n\nAvoid aesthetic commentary.\n\n---\n\n### 2. Dieter Rams — Reduction & Necessity\nFocus:\n- Feature necessity\n- Elimination opportunities\n- Signal-to-noise ratio\n- Structural simplicity\n- Long-term maintainability\n\nAvoid micro-UX nitpicks.","marked":"## Personas & Lenses\n\nSimulate the following agents with non-overlapping focus:\n\n### 1. Don Norman — Mental Model Integrity\nFocus:\n- Affordances\n- Visibility of system state\n- Mapping between controls and outcomes\n- Error prevention and recovery\n- Mental model coherence\n\n\u0001Avoid aesthetic commentary.\u0002\n\n---\n\n### 2. Dieter Rams — Reduction & Necessity\nFocus:\n- Feature necessity\n- Elimination opportunities\n- Signal-to-noise ratio\n- Structural simplicity\n- Long-term maintainability\n\nAvoid micro-UX nitpicks.","excerpt":"Avoid aesthetic commentary.","title":"UX Design Legends","url":"https://chatgpt.com/share/6991a8e7-6338-800c-b918-c4a96684e46a","author":"Unknown","style":7},{"quote":"A user research report isn't just a record of what you learned — it's a tool for driving action","marked":"\u0001A user research report isn't just a record of what you learned — it's a tool for driving action\u0002","excerpt":"A user research report isn't just a record of what you learned — it's a tool for driving action","title":"How to Write a Good User Research Report","url":"https://medium.com/@benweedonresearch/how-to-write-a-good-user-research-report-7a82d0a96968","author":"Ben Weedon","style":8},{"quote":"The distinction between strategies and tactics reveals a critical blind spot: health systems are designed around strategies, while the majority of patient decision-making happens tactically. Misinformation often emerges not from tactics, but from the absence of structured pathways that allow tactical knowledge to safely interact with expert systems.","marked":"The distinction between strategies and tactics reveals a critical blind spot: \u0001health systems are designed around strategies, while the majority of patient decision-making happens tactically.\u0002 Misinformation often emerges not from tactics, but from the absence of structured pathways that allow tactical knowledge to safely interact with expert systems.","excerpt":"health systems are designed around strategies, while the majority of patient decision-making happens tactically.","title":"Unlocking healthtech opportunities using Certeau's \"strategies\" and \"tactics\"","url":"https://stripepartners.substack.com/p/this-months-frame-unlocking-healthtech","author":"Stripe Partners","style":9},{"quote":"AI's pushiest evangelists are either full-time conference types, talking airily about how workers need to adapt in undefined ways for the Fourth Industrial Revolution, or earnest computer people who lionise their own small contributions to the rising tide of slop. Valuelessness comes in stereo. No wonder it's cathartic to tell both sides to bog off.","marked":"AI's pushiest evangelists are either full-time conference types, talking airily about how workers need to adapt in undefined ways for the Fourth Industrial Revolution, or earnest computer people who lionise their own small contributions to the rising tide of slop. \u0001Valuelessness comes in stereo.\u0002 No wonder it's cathartic to tell both sides to bog off.","excerpt":"Valuelessness comes in stereo.","title":"Now is a good time to shut up about AI","url":"https://substack.com/@ftav/p-188368455","author":"Alphaville","style":10},{"quote":"A system that is designed to fail safe, or fail-secure, or fail gracefully, whether it functions at a reduced level or fails completely, does so in a way that protects people, property, or data from injury, damage, intrusion, or disclosure.","marked":"A system that is designed to \u0001fail safe, or fail-secure, or fail gracefully\u0002, whether it functions at a reduced level or fails completely, does so in a way that protects people, property, or data from injury, damage, intrusion, or disclosure.","excerpt":"fail safe, or fail-secure, or fail gracefully","title":"Fault tolerance","url":"https://en.wikipedia.org/wiki/Fault_tolerance","author":"Contributors to Wikimedia projects","style":11},{"quote":"In intercom we set a goal for ourselves for the product design team. There's about 30 designers in this group and I asked all the product designers to ship a code change in Q2 to ship a pull request like ship code to production.","marked":"In intercom we set a goal for ourselves for the product design team. There's about 30 designers in this group and \u0001I asked all the product designers to ship a code change\u0002 in Q2 to ship a pull request like ship code to production.","excerpt":"I asked all the product designers to ship a code change","title":"When Designers Start Shipping Real Code","url":"https://www.youtube.com/watch?v=_acdhjOLvBs&t=1616s","author":"Emmet Connolly","style":0},{"quote":"Users bring their own creative goals to our product. They're incredibly diverse and often non-linear. I believe it's best to think of a use case as a test case to see if your basic tools are working.","marked":"Users bring their own creative goals to our product. They're incredibly diverse and often non-linear. \u0001I believe it's best to think of a use case as a test case to see if your basic tools are working.\u0002","excerpt":"I believe it's best to think of a use case as a test case to see if your basic tools are working.","title":"Overfitting and the problem with use cases","url":"https://medium.com/design-bootcamp/overfitting-and-the-problem-with-use-cases-337d9f4bf4d7","author":"Joe McLean","style":1},{"quote":"Claude Code and its ilk are coming for the study of politics like a freight train. A single academic is going to be able to write thousands of empirical papers per year. We'll need to find new ways of organizing and disseminating political science research in the very near future for this deluge.","marked":"\u0001Claude Code and its ilk are coming for the study of politics like a freight train.\u0002 A single academic is going to be able to write thousands of empirical papers per year. We'll need to find new ways of organizing and disseminating political science research in the very near future for this deluge.","excerpt":"Claude Code and its ilk are coming for the study of politics like a freight train.","title":"The Age of Academic Slop is Upon Us","url":"https://hegemon.substack.com/p/the-age-of-academic-slop-is-upon","author":"Seva Gunitsky","style":2},{"quote":"Designing for everyone means looking beyond surface categories like demographics or digital skill. A digital interface doesn't just require technical ability — it asks for time, trust, money for data, a quiet moment, a private connection, confidence, and even awareness that the service exists.","marked":"Designing for everyone means looking beyond surface categories like demographics or digital skill. A digital interface doesn't just require technical ability — \u0001it asks for time, trust, money for data, a quiet moment, a private connection, confidence, and even awareness that the service exists.\u0002","excerpt":"it asks for time, trust, money for data, a quiet moment, a private connection, confidence, and even awareness that the service exists.","title":"Universal Barriers to Access","url":"https://uteschauberger.com/barrierstoaccess.html","author":"Ute Schauberger","style":3},{"quote":"Wplace is a collaborative, real-time pixel canvas layered over the world map, where anyone can paint and create art together.","marked":"Wplace is a collaborative, real-time pixel canvas layered over the world map, where \u0001anyone can paint and create art together.\u0002","excerpt":"anyone can paint and create art together.","title":"Paint the world","url":"https://wplace.live/","author":"Murilo Matsubara","style":4},{"quote":"What if AI became the connective tissue of a team, something that lives in the gaps between people. That carries memory across time: the decisions made, the reasoning behind them, the things tried and abandoned.","marked":"\u0001What if AI became the connective tissue of a team\u0002, something that lives in the gaps between people. That carries memory across time: the decisions made, the reasoning behind them, the things tried and abandoned.","excerpt":"What if AI became the connective tissue of a team","title":"Design in the (AI) loop","url":"https://www.katherinewastell.com/blog/2026/3/2/design-in-the-ai-loop","author":"Katherine Wastell","style":5},{"quote":"the job of the designer/technologist in this world becomes designing a series of objects that can be acted on by an AI agent - they need to be grippable, for lack of a better term.","marked":"the job of the designer/technologist in this world becomes designing a series of objects that can be acted on by an AI agent - \u0001they need to be grippable, for lack of a better term.\u0002","excerpt":"they need to be grippable, for lack of a better term.","title":"Getting a grip","url":"https://www.rpp.works/ways-of-doing/getting-a-grip/","author":"Richard Pope","style":6}],"styles":[{"font":"'Bodoni Moda', serif","bg":"#6B1E1E","ink":"#F3E9D7","italic":false},{"font":"'EB Garamond', serif","bg":"#F2EBDD","ink":"#1C1A17","italic":true},{"font":"'Libre Caslon Text', serif","bg":"#1F3A2E","ink":"#ECE4CF","italic":false},{"font":"'Playfair Display', serif","bg":"#D9A441","ink":"#2A1E0E","italic":false},{"font":"'Cormorant Garamond', serif","bg":"#18233A","ink":"#F1E6D2","italic":true},{"font":"'Bodoni Moda', serif","bg":"#EED6CF","ink":"#5A1F2B","italic":true},{"font":"'Playfair Display', serif","bg":"#1E3FAE","ink":"#F5F0E6","italic":true},{"font":"'DM Serif Display', serif","bg":"#151413","ink":"#EDE6D6","italic":false},{"font":"'Libre Caslon Text', serif","bg":"#B9C3A5","ink":"#1F2A1C","italic":true},{"font":"'EB Garamond', serif","bg":"#C8432B","ink":"#FBF3E6","italic":false},{"font":"'DM Serif Display', serif","bg":"#E4DCCB","ink":"#23314F","italic":true},{"font":"'Cormorant Garamond', serif","bg":"#3B2A22","ink":"#E9D9BF","italic":false}]};
+
+    function sizeFor(text) {
+      const n = text.length;
+      if (n <= 110) return 8.4;
+      if (n <= 200) return 6.6;
+      if (n <= 280) return 5.8;
+      if (n <= 380) return 5.0;
+      if (n <= 480) return 4.4;
+      return 3.9;
+    }
+
+    function esc(s) {
+      return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    // The full quote, as paragraphs, with the poster's excerpt marked.
+    function fullHTML(p) {
+      return esc(p.marked).split(/\n+/).map(t => '<p>' + t.trim() + '</p>').join('')
+        .replace(/([^]*?)/g, (m, x) => '<mark>' + x.split('</p><p>').join('</mark></p><p><mark>') + '</mark>');
+    }
+
+    function posterHTML(p, i, tag, full) {
+      const s = styles[p.style];
+      const text = full ? p.quote : p.excerpt;
+      const paras = full ? fullHTML(p) : p.excerpt.split(/\n+/).map(t => '<p>' + esc(t.trim()) + '</p>').join('');
+      const vars = '--bg:' + s.bg + ';--ink:' + s.ink + ';--font:' + s.font +
+        ';--style:' + (s.italic ? 'italic' : 'normal') + ';--size:' + sizeFor(text);
+      const attrs = tag === 'a' ? ' href="#' + (i + 1) + '" aria-label="Poster ' + (i + 1) + ': ' + esc(p.title) + '"' : '';
+      return '<' + tag + ' class="poster" style="' + vars + '"' + attrs + '>' +
+        '<div class="poster-inner"><div class="quote' + (full ? ' full' : '') + (text.length < 160 ? ' short' : '') + '">' + paras + '</div></div>' +
+        '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a>' +
+        (p.author ? '<br><span class="author">' + esc(p.author) + '</span>' : '') + '</div>' +
+        '</' + tag + '>';
+    }
+
+    document.getElementById('wall').innerHTML = posters.map((p, i) => posterHTML(p, i, 'a')).join('');
+
+    const single = document.getElementById('single');
+    let current = -1;
+    let full = false;
+
+    function show(i) {
+      single.classList.toggle('fresh', i !== current);
+      if (i !== current) full = false;
+      current = (i + posters.length) % posters.length;
+      const p = posters[current];
+      const s = styles[p.style];
+      single.innerHTML = posterHTML(p, current, 'div', full) +
+        '<div class="controls" style="--ink:' + s.ink + '">' +
+          (p.excerpt !== p.quote ? '<button type="button" data-full>' + (full ? 'Excerpt' : 'Full quote') + '</button>' : '') +
+          '<span class="count">' + (current + 1) + ' of ' + posters.length + '</span>' +
+          '<button type="button" data-go="-1">Previous</button>' +
+          '<button type="button" data-go="1">Next</button>' +
+          '<a href="#">View all</a>' +
+        '</div>';
+      document.body.classList.add('is-single');
+      document.title = posters[current].title + ' – link quote posters';
+      document.querySelector('meta[name=theme-color]')?.setAttribute('content', s.bg);
+    }
+
+    function go(step) { location.hash = '#' + (((current + step + posters.length) % posters.length) + 1); }
+
+    function route() {
+      const n = parseInt(location.hash.slice(1), 10);
+      if (n >= 1 && n <= posters.length) {
+        show(n - 1);
+      } else {
+        const was = current;
+        current = -1;
+        document.body.classList.remove('is-single');
+        document.title = 'link quote posters';
+        if (was >= 0) document.querySelectorAll('.wall .poster')[was]?.focus({ preventScroll: false });
+      }
+    }
+
+    single.addEventListener('click', e => {
+      if (e.target.closest('[data-full]')) { full = !full; return show(current); }
+      const btn = e.target.closest('[data-go]');
+      if (btn) return go(+btn.dataset.go);
+      if (e.target.closest('a, .controls')) return;
+      // Click the left third to go back, anywhere else to go forward.
+      go(e.clientX < window.innerWidth / 3 ? -1 : 1);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (current < 0) return;
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'Escape') location.hash = '';
+    });
+
+    let touchX = null;
+    single.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    single.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+    });
+
+    window.addEventListener('hashchange', route);
+    route();
+  </script>
+</body>
+</html>

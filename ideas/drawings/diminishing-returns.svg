@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M30 270 Q130 120 390 110"/>
+<path d="M287 113 L283 82 M283 82 L270 113 M283 82 L298 112"/>
+<circle class="fill" cx="281" cy="70" r="11"/>
+<path d="M284 92 L318 92 M285 99 L318 100"/>
+<circle class="fill" cx="334" cy="92" r="17"/>
+<path d="M262 60 L256 54 M264 72 L256 72"/>
+<text class="hand" x="300" y="36">NEARLY</text>
+<text class="hand" x="300" y="56">THERE</text>
+<text class="hand" x="100" y="282">EASY</text>
+</g></svg>

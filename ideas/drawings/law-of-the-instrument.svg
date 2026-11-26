@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path class="fill" d="M96 30 L226 96 L218 112 L88 46 Z"/>
+<path class="fill" d="M214 66 L246 82 L226 128 L194 112 Z"/>
+<circle class="fill" cx="100" cy="218" r="26"/>
+<rect class="fill" x="88" y="242" width="24" height="18"/>
+<path d="M90 249 L110 249 M92 214 Q100 226 108 214"/>
+<path class="fill" d="M172 206 L180 256 L224 256 L232 206 Z"/>
+<path d="M232 216 Q252 218 246 236 Q242 244 228 242 M160 262 L244 262"/>
+<rect class="fill" x="288" y="196" width="44" height="68" rx="6"/>
+<path d="M300 254 L320 254"/>
+<text class="hand" x="100" y="178">NAIL?</text>
+<text class="hand" x="202" y="178">NAIL?</text>
+<text class="hand" x="310" y="178">NAIL?</text>
+</g></svg>

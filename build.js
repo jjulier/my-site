@@ -1,11 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
-// Read links data
-const links = JSON.parse(fs.readFileSync('./data/links.json', 'utf8'));
+// Read links from the Obsidian note (copied into data/links.md by publish.sh)
+const { parseLinks } = require('./notes');
+const links = parseLinks(fs.readFileSync('./data/links.md', 'utf8'));
 
 function formatDate(dateStr) {
   if (!dateStr) return '';
+  if (/^\d{4}-\d{2}$/.test(dateStr)) {
+    return new Date(dateStr + '-01').toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+  }
   const d = new Date(dateStr);
   if (isNaN(d)) return dateStr;
   return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -57,3 +61,17 @@ ${articles}
 // Write the output
 fs.writeFileSync('./links/index.html', generateLinksPage(links));
 console.log('✓ Built links/index.html');
+
+// Posters: each quote as a poster, showing the ==highlighted== excerpt
+const { generatePostersPage } = require('./posters');
+fs.mkdirSync('./posters', { recursive: true });
+fs.writeFileSync('./posters/index.html', generatePostersPage(links));
+console.log('✓ Built posters/index.html from ' + links.length + ' links');
+
+// Ideas: Wikipedia pages as white posters with drawings, from the "Wikipedia ideas" note
+if (fs.existsSync('./data/ideas.md')) {
+  const { generateIdeasPage } = require('./ideas');
+  const ideas = parseLinks(fs.readFileSync('./data/ideas.md', 'utf8'));
+  fs.writeFileSync('./ideas/index.html', generateIdeasPage(ideas));
+  console.log('✓ Built ideas/index.html from ' + ideas.length + ' ideas');
+}

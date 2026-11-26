@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M150 172 L150 232 L250 232 L254 196 Q286 186 292 158 Q295 146 284 146 Q270 160 252 168 L251 172"/>
+<path d="M150 172 L150 102 Q158 90 166 102 L166 172"/>
+<path d="M167 172 L167 88 Q175 76 183 88 L183 172"/>
+<path d="M184 172 L184 82 Q192 70 200 82 L200 172"/>
+<path d="M201 172 L201 86 Q209 74 217 86 L217 172"/>
+<path d="M218 172 L218 96 Q226 84 234 96 L234 172"/>
+<path d="M235 172 L235 110 Q243 98 251 110 L251 172"/>
+<rect x="156" y="232" width="90" height="30"/>
+<text class="hand" x="200" y="290">FITS ONE PERSON PERFECTLY</text>
+</g></svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<circle class="ink" cx="70" cy="120" r="4"/><circle class="ink" cx="88" cy="112" r="4"/><circle class="ink" cx="102" cy="104" r="4"/><circle class="ink" cx="118" cy="98" r="4"/><circle class="ink" cx="134" cy="88" r="4"/><circle class="ink" cx="148" cy="82" r="4"/>
+<circle class="ink" cx="236" cy="246" r="4"/><circle class="ink" cx="254" cy="238" r="4"/><circle class="ink" cx="270" cy="232" r="4"/><circle class="ink" cx="288" cy="222" r="4"/><circle class="ink" cx="304" cy="216" r="4"/><circle class="ink" cx="320" cy="206" r="4"/>
+<path d="M62 138 L160 70 M146 70 L160 70 L154 84"/>
+<path d="M228 264 L330 192 M316 192 L330 192 L324 206"/>
+<path d="M40 50 L370 278 M352 278 L370 278 L362 262" stroke-dasharray="10 9"/>
+<text class="hand" x="88" y="62">UP</text>
+<text class="hand" x="252" y="186">UP</text>
+<text class="hand" x="330" y="120">DOWN</text>
+</g></svg>

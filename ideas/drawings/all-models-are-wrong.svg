@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path class="fill" d="M340 100 L60 160 L150 176 Z"/>
+<path class="fill" d="M340 100 L150 176 L176 218 Z"/>
+<path d="M150 176 L138 206 L176 218"/>
+<path d="M30 206 L80 198 M44 228 L96 216 M60 250 L110 236"/>
+<text class="hand" x="250" y="270">THIS IS A PLANE</text>
+</g></svg>

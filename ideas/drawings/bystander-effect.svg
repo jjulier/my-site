@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M20 230 L210 230 Q222 230 226 244"/>
+<path d="M226 244 Q246 236 266 244 Q286 252 306 244 Q326 236 346 244 Q366 252 386 244"/>
+<circle class="fill" cx="306" cy="226" r="12"/>
+<path d="M300 232 Q306 228 312 232"/>
+<path d="M316 220 L338 182 M332 178 L338 182 L344 176 M338 182 L346 186"/>
+<text class="hand" x="352" y="166">HELP</text>
+<g><circle class="fill" cx="40" cy="146" r="11"/><path d="M40 157 L40 198 M40 198 L32 230 M40 198 L48 230 M40 168 L34 192 M40 168 L46 192"/></g>
+<g><circle class="fill" cx="84" cy="146" r="11"/><path d="M84 157 L84 198 M84 198 L76 230 M84 198 L92 230 M84 168 L78 192 M84 168 L90 192"/></g>
+<g><circle class="fill" cx="128" cy="146" r="11"/><path d="M128 157 L128 198 M128 198 L120 230 M128 198 L136 230 M128 168 L122 192 M128 168 L134 192"/></g>
+<g><circle class="fill" cx="172" cy="146" r="11"/><path d="M172 157 L172 198 M172 198 L164 230 M172 198 L180 230 M172 168 L166 192 M172 168 L178 192"/></g>
+<text class="hand" x="106" y="90">SOMEONE ELSE</text>
+<text class="hand" x="106" y="112">WILL DO IT</text>
+</g></svg>

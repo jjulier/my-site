@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M20 268 L380 268"/>
+<path class="fill" d="M250 268 Q274 170 256 70 L352 70 Q334 170 358 268 Z"/>
+<path d="M262 64 Q258 40 280 42 Q286 20 308 30 Q322 14 338 34 Q360 34 352 60"/>
+<path class="fill" d="M60 200 L115 164 L170 200"/>
+<rect class="fill" x="72" y="200" width="86" height="68"/>
+<rect x="102" y="222" width="26" height="46"/>
+<circle class="fill" cx="40" cy="214" r="9"/><path d="M40 223 L40 250 M40 250 L32 268 M40 250 L48 268 M40 232 L54 226"/>
+<circle class="fill" cx="196" cy="214" r="9"/><path d="M196 223 L196 250 M196 250 L188 268 M196 250 L204 268 M196 232 L182 226"/>
+<text class="hand" x="40" y="186">BLUE!</text>
+<text class="hand" x="200" y="186">GREEN!</text>
+</g></svg>

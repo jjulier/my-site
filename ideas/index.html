@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ideas that mean something</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Gochi+Hand&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      background: #EEECE7;
+      color: #141414;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* A poster. Everything inside is sized in --u, which scales with the poster. */
+    .poster {
+      container-type: size;
+      position: relative;
+      display: block;
+      background: #fff;
+      color: #141414;
+      overflow: hidden;
+    }
+    .poster-inner {
+      --u: min(1cqi, 0.75cqb);
+      position: absolute;
+      inset: 0;
+      padding: calc(8 * var(--u));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: calc(5 * var(--u));
+      text-align: center;
+    }
+    .drawing { width: calc(72 * var(--u)); flex: none; }
+    .drawing svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .drawing svg :is(path, line, rect, circle, ellipse, polyline) {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 3.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .drawing svg .fill { fill: #fff; }
+    .drawing svg .ink { fill: currentColor; stroke: none; }
+    .drawing svg .hand {
+      font-family: 'Gochi Hand', cursive;
+      font-size: 25px;
+      text-anchor: middle;
+      fill: currentColor;
+      stroke: none;
+    }
+    .quote {
+      max-width: calc(76 * var(--u));
+      font-size: calc(var(--size) * var(--u));
+      line-height: 1.25;
+    }
+    .quote p { margin: 0; text-wrap: balance; }
+    .quote.m-full, .quote.m-note { text-align: left; }
+    .quote.m-full p, .quote.m-note p { text-wrap: pretty; }
+    .quote.m-full { color: #9a9893; }
+    .quote.m-full mark { background: none; color: #141414; }
+    .quote.m-note { font-style: italic; }
+    .quote.m-note a { text-decoration: underline; text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
+
+    /* Wall */
+    .wall-head { padding: 24px 24px 0; }
+    .wall-head nav a { margin-right: 20px; color: #0000FF; }
+    .wall-head nav a:hover { background: #FBE4EC; }
+    h1 { font-size: 34px; font-weight: 400; margin: 48px 24px 8px; }
+    h1 em { font-style: italic; }
+    .intro { margin: 0 24px 16px; color: #5f5d58; max-width: 560px; }
+    h2 { font-size: 24px; font-weight: 400; font-style: italic; margin: 40px 24px 16px; }
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      padding: 0 24px;
+    }
+    .wall .poster {
+      aspect-ratio: 1 / 1.33;
+      cursor: pointer;
+      transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+    }
+    .wall .poster:hover, .wall .poster:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px -16px rgba(0,0,0,.35);
+      outline: none;
+    }
+    .wall .meta { display: none; }
+    footer { margin: 64px 24px 48px; color: #5f5d58; }
+    footer a { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Single poster, filling the screen */
+    .single { display: none; }
+    body.is-single { overflow: hidden; background: #fff; }
+    body.is-single .single { display: block; position: fixed; inset: 0; }
+    body.is-single .wall-view { display: none; }
+    .single .poster { position: absolute; inset: 0; }
+    .single .poster-inner { --u: min(1cqi, 0.6cqb); padding-bottom: calc(12 * var(--u)); }
+    .single.fresh .poster { animation: fade .5s ease; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    .meta {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      right: 380px;
+      line-height: 1.4;
+    }
+    .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .meta .group { color: #77756f; }
+    .controls {
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      display: flex;
+      gap: 20px;
+      z-index: 2;
+    }
+    .controls > * { white-space: nowrap; }
+    .controls a, .controls button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+    .controls a:hover, .controls button:hover, .controls [aria-pressed="true"] {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .controls .count { color: #77756f; font-variant-numeric: tabular-nums; }
+
+    @media (max-width: 640px) {
+      .wall-head, .wall { padding-left: 16px; padding-right: 16px; }
+      h1, h2, .intro, footer { margin-left: 16px; margin-right: 16px; }
+      .wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .single .poster-inner { --u: min(1cqi, 0.62cqb); padding: 10cqi 8cqi 34cqi; }
+      .meta { left: 16px; right: 16px; bottom: 64px; }
+      .controls { left: 16px; right: 16px; gap: 16px; }
+      .controls .count { display: none; }
+      .controls a { margin-left: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .single.fresh .poster { animation: none; }
+      .wall .poster { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Makes every drawing's lines a little wobbly, like ink -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5"/>
+    </filter>
+  </svg>
+
+  <div class="wall-view">
+    <div class="wall-head">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/links">Links</a>
+        <a href="/posters">Posters</a>
+        <a href="/ideas">Ideas</a>
+      </nav>
+    </div>
+    <h1>ideas that <em>mean</em> something</h1>
+    <p class="intro">Wikipedia pages I keep coming back to, and what they make me think about.</p>
+    <main id="wall"></main>
+    <footer>Quotes from <a href="https://en.wikipedia.org/">Wikipedia</a>, shared under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Drawings by me, sort of.</footer>
+  </div>
+
+  <div class="single" id="single" aria-live="polite"></div>
+
+  <script>
+    const ideas = [{"title":"Convergent evolution","url":"https://en.wikipedia.org/wiki/Convergent_evolution","group":"Design","quote":"Convergent evolution is the independent evolution of similar features in species of different lineages.","marked":"Convergent evolution is \u0001the independent evolution of similar features in species of different lineages\u0002.","excerpt":"the independent evolution of similar features in species of different lineages","note":"An analogy for how, in an ideal world, design patterns emerge.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M42 150 Q90 115 160 133 Q185 139 192 150 Q170 165 120 168 Q70 170 42 150 Z\"/>\n\u003cpath d=\"M98 125 L114 92 L130 131\"/>\n\u003cpath d=\"M44 150 L18 122 Q30 150 18 180 Z\"/>\n\u003ccircle class=\"ink\" cx=\"166\" cy=\"144\" r=\"3\"/>\n\u003cpath d=\"M146 140 L144 154 M152 140 L150 155\"/>\n\u003cpath d=\"M168 158 Q178 161 188 153\"/>\n\u003cpath d=\"M242 150 Q290 117 352 133 Q368 137 390 146 L374 151 Q350 166 310 168 Q270 170 242 150 Z\"/>\n\u003cpath d=\"M298 124 Q308 100 324 96 Q314 114 324 130\"/>\n\u003cpath d=\"M244 150 L216 134 Q228 150 216 168 Z\"/>\n\u003ccircle class=\"ink\" cx=\"350\" cy=\"143\" r=\"3\"/>\n\u003cpath d=\"M356 154 Q366 157 376 151\"/>\n\u003ctext class=\"hand\" x=\"110\" y=\"228\">FISH\u003c/text>\n\u003ctext class=\"hand\" x=\"312\" y=\"228\">NOT A FISH\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Hobson's choice","url":"https://en.wikipedia.org/wiki/Hobson%27s_choice","group":"Design","quote":"A Hobson's choice is a free choice in which only one thing is actually offered. The term is often used to describe an illusion that choices are available.","marked":"A Hobson's choice is \u0001a free choice in which only one thing is actually offered\u0002. The term is often used to describe an illusion that choices are available.","excerpt":"a free choice in which only one thing is actually offered","note":"See also [choice architecture](https://en.wikipedia.org/wiki/Choice_architecture) and also the [overton window](https://en.wikipedia.org/wiki/Overton_window). Always good to think about what choices are off the table and why.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M20 252 L380 252\"/>\n\u003crect x=\"110\" y=\"56\" width=\"140\" height=\"196\"/>\n\u003cpath d=\"M150 160 Q140 112 168 88 Q180 78 196 84 L222 122 Q232 138 218 144 Q204 147 196 136 L190 128 Q190 146 208 160\"/>\n\u003cpath d=\"M170 86 L164 66 L180 82 M182 82 L184 62 L194 80\"/>\n\u003ccircle class=\"ink\" cx=\"190\" cy=\"104\" r=\"3\"/>\n\u003ccircle class=\"ink\" cx=\"216\" cy=\"135\" r=\"2\"/>\n\u003crect class=\"fill\" x=\"110\" y=\"160\" width=\"140\" height=\"92\"/>\n\u003cpath d=\"M110 190 L250 190 M110 220 L250 220 M112 162 L248 250\"/>\n\u003cpath d=\"M320 252 L320 150\"/>\n\u003crect class=\"fill\" x=\"270\" y=\"96\" width=\"104\" height=\"58\"/>\n\u003ctext class=\"hand\" x=\"322\" y=\"120\">THIS ONE\u003c/text>\n\u003ctext class=\"hand\" x=\"322\" y=\"145\">OR NONE\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Diminishing returns","url":"https://en.wikipedia.org/wiki/Diminishing_returns","group":"Design","quote":"if a factor of production continues to increase—while holding all other production factors constant—at some point, a further incremental unit of input will return a lower amount of output.","marked":"if a factor of production continues to increase—while holding all other production factors constant—\u0001at some point, a further incremental unit of input will return a lower amount of output.\u0002","excerpt":"at some point, a further incremental unit of input will return a lower amount of output.","note":"The concept that predates the graph that shows the tipping point where adding more features to you product starts making it worse.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M30 270 Q130 120 390 110\"/>\n\u003cpath d=\"M287 113 L283 82 M283 82 L270 113 M283 82 L298 112\"/>\n\u003ccircle class=\"fill\" cx=\"281\" cy=\"70\" r=\"11\"/>\n\u003cpath d=\"M284 92 L318 92 M285 99 L318 100\"/>\n\u003ccircle class=\"fill\" cx=\"334\" cy=\"92\" r=\"17\"/>\n\u003cpath d=\"M262 60 L256 54 M264 72 L256 72\"/>\n\u003ctext class=\"hand\" x=\"300\" y=\"36\">NEARLY\u003c/text>\n\u003ctext class=\"hand\" x=\"300\" y=\"56\">THERE\u003c/text>\n\u003ctext class=\"hand\" x=\"100\" y=\"282\">EASY\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Overfitting","url":"https://en.wikipedia.org/wiki/Overfitting","group":"Design","quote":"In mathematical modeling, overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data and may therefore fail to fit to additional data or predict future observations reliably.","marked":"In mathematical modeling, overfitting is the production of an analysis that \u0001corresponds too closely or exactly to a particular set of data and may therefore fail to fit to additional data\u0002 or predict future observations reliably.","excerpt":"corresponds too closely or exactly to a particular set of data and may therefore fail to fit to additional data","note":"One of the tensions in design too. Build so it meets one audiences needs perfectly, and end up excluding others with a similar need.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M150 172 L150 232 L250 232 L254 196 Q286 186 292 158 Q295 146 284 146 Q270 160 252 168 L251 172\"/>\n\u003cpath d=\"M150 172 L150 102 Q158 90 166 102 L166 172\"/>\n\u003cpath d=\"M167 172 L167 88 Q175 76 183 88 L183 172\"/>\n\u003cpath d=\"M184 172 L184 82 Q192 70 200 82 L200 172\"/>\n\u003cpath d=\"M201 172 L201 86 Q209 74 217 86 L217 172\"/>\n\u003cpath d=\"M218 172 L218 96 Q226 84 234 96 L234 172\"/>\n\u003cpath d=\"M235 172 L235 110 Q243 98 251 110 L251 172\"/>\n\u003crect x=\"156\" y=\"232\" width=\"90\" height=\"30\"/>\n\u003ctext class=\"hand\" x=\"200\" y=\"290\">FITS ONE PERSON PERFECTLY\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"McNamara fallacy","url":"https://en.wikipedia.org/wiki/McNamara_fallacy","group":"Product","quote":"The first step is to measure whatever can be easily measured. This is okay as far as it goes. The second step is to disregard that which can't be easily measured or give it an arbitrary quantitative value. This is artificial and misleading. The third step is to presume that what can't be measured easily really isn't very important. This is blindness.","marked":"The first step is to measure whatever can be easily measured. This is okay as far as it goes. The second step is to disregard that which can't be easily measured or give it an arbitrary quantitative value. This is artificial and misleading. The third step is to presume that \u0001what can't be measured easily really isn't very important\u0002. This is blindness.","excerpt":"what can't be measured easily really isn't very important","note":"Why OKRs and A/B testing on its own doesn't lead to great products people love.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath class=\"fill\" d=\"M180 190 C120 150 118 90 158 94 C174 96 180 108 180 116 C180 108 186 96 202 94 C242 90 240 150 180 190 Z\"/>\n\u003crect x=\"100\" y=\"206\" width=\"170\" height=\"26\"/>\n\u003cpath d=\"M110 206 L110 216 M120 206 L120 213 M130 206 L130 213 M140 206 L140 216 M150 206 L150 213 M160 206 L160 213 M170 206 L170 216 M180 206 L180 213 M190 206 L190 213 M200 206 L200 216 M210 206 L210 213 M220 206 L220 213 M230 206 L230 216 M240 206 L240 213 M250 206 L250 213 M260 206 L260 216\"/>\n\u003cpath d=\"M296 128 Q270 132 240 140 M248 132 L240 140 L250 146\"/>\n\u003ctext class=\"hand\" x=\"320\" y=\"122\">4.2 CM\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"All models are wrong","url":"https://en.wikipedia.org/wiki/All_models_are_wrong","group":"Product","quote":"\"All models are wrong\" is a common aphorism in statistics, and science more generally. It is often expanded as \"All models are wrong, but some are useful\".","marked":"\"All models are wrong\" is a common aphorism in statistics, and science more generally. It is often expanded as \"\u0001All models are wrong, but some are useful\u0002\".","excerpt":"All models are wrong, but some are useful","note":"Aka the map is not the territory. One of my least favourite forms of bike shedding is spending too longer trying to make the map or model some sort of simulacra of reality, it's not possible.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath class=\"fill\" d=\"M340 100 L60 160 L150 176 Z\"/>\n\u003cpath class=\"fill\" d=\"M340 100 L150 176 L176 218 Z\"/>\n\u003cpath d=\"M150 176 L138 206 L176 218\"/>\n\u003cpath d=\"M30 206 L80 198 M44 228 L96 216 M60 250 L110 236\"/>\n\u003ctext class=\"hand\" x=\"250\" y=\"270\">THIS IS A PLANE\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Sunk cost fallacy","url":"https://en.wikipedia.org/wiki/Sunk_cost","group":"Product","quote":"In other words, a sunk cost is a sum paid in the past that should no longer be relevant to decisions about the future.","marked":"In other words, a sunk cost is \u0001a sum paid in the past that should no longer be relevant to decisions about the future\u0002.","excerpt":"a sum paid in the past that should no longer be relevant to decisions about the future","note":"See also the [endowment effect](https://en.wikipedia.org/wiki/Endowment_effect). Basically a reason to ask the question 'Are we spending time on this because we actually still believe it's the right thing to do, or are we just in so deep we can't bear to stop, and thus crystallise the loss?'","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M20 120 L150 120 M250 120 L380 120\"/>\n\u003cpath d=\"M150 120 L162 280 L238 280 L250 120\"/>\n\u003ccircle class=\"fill\" cx=\"196\" cy=\"214\" r=\"10\"/>\n\u003cpath d=\"M196 224 L198 260 M198 260 L188 280 M198 260 L208 280 M197 236 L214 244 L222 236\"/>\n\u003cpath d=\"M232 184 L214 262 M209 260 L204 276 L218 278 L220 262 Z\"/>\n\u003cpath d=\"M266 120 Q312 64 364 120\"/>\n\u003ccircle class=\"ink\" cx=\"236\" cy=\"96\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"252\" cy=\"80\" r=\"2\"/>\u003ccircle class=\"ink\" cx=\"226\" cy=\"74\" r=\"2\"/>\n\u003cpath d=\"M84 120 L84 70\"/>\n\u003crect class=\"fill\" x=\"22\" y=\"36\" width=\"124\" height=\"34\"/>\n\u003ctext class=\"hand\" x=\"84\" y=\"60\">NEARLY THERE\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Opportunity cost","url":"https://en.wikipedia.org/wiki/Opportunity_cost","group":"Product","quote":"In microeconomic theory, the opportunity cost of a choice is the value of the best alternative forgone where, given limited resources, a choice needs to be made between several mutually exclusive alternatives.","marked":"In microeconomic theory, the opportunity cost of a choice is \u0001the value of the best alternative forgone\u0002 where, given limited resources, a choice needs to be made between several mutually exclusive alternatives.","excerpt":"the value of the best alternative forgone","note":"What are you not doing as a result of focusing on your current thing? Don't just think about the value of the current thing, but also about the value of the stuff that it displaces or pushes later down the line.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M90 278 L104 236 L118 278 M104 236 L104 186 M104 200 L130 160 M104 204 L84 228\"/>\n\u003ccircle class=\"fill\" cx=\"104\" cy=\"174\" r=\"12\"/>\n\u003cpath d=\"M99 180 Q104 177 109 180\"/>\n\u003cpath d=\"M130 160 Q138 132 142 114\"/>\n\u003cellipse class=\"fill\" cx=\"146\" cy=\"82\" rx=\"26\" ry=\"32\"/>\n\u003cpath d=\"M142 114 L150 114\"/>\n\u003cellipse class=\"fill\" cx=\"270\" cy=\"70\" rx=\"18\" ry=\"22\"/>\u003cpath d=\"M270 92 Q262 116 274 136\"/>\n\u003cellipse class=\"fill\" cx=\"330\" cy=\"120\" rx=\"16\" ry=\"20\"/>\u003cpath d=\"M330 140 Q340 160 328 180\"/>\n\u003cellipse class=\"fill\" cx=\"356\" cy=\"40\" rx=\"13\" ry=\"16\"/>\u003cpath d=\"M356 56 Q350 72 360 86\"/>\n\u003ctext class=\"hand\" x=\"300\" y=\"230\">ALL THE OTHER\u003c/text>\n\u003ctext class=\"hand\" x=\"300\" y=\"252\">BALLOONS\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Streisand effect","url":"https://en.wikipedia.org/wiki/Streisand_effect","group":"In life","quote":"The Streisand effect is the phenomenon in which an attempt to hide, remove, or censor information results in the unintended consequence of the effort instead increasing public awareness of the information.","marked":"The Streisand effect is the phenomenon in which \u0001an attempt to hide, remove, or censor information\u0002 results in the unintended consequence of the effort instead \u0001increasing public awareness of the information\u0002.","excerpt":"an attempt to hide, remove, or censor information … increasing public awareness of the information","note":"In setting out to achieve one outcome, you end up achieving the exact opposite. Often true of overly strict security policies that push people into workarounds.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M150 170 L150 270 M250 170 L250 270\"/>\n\u003crect class=\"fill\" x=\"110\" y=\"84\" width=\"180\" height=\"88\"/>\n\u003ctext class=\"hand\" x=\"200\" y=\"122\">DO NOT LOOK\u003c/text>\n\u003ctext class=\"hand\" x=\"200\" y=\"152\">AT THIS\u003c/text>\n\u003cg>\u003cellipse cx=\"40\" cy=\"50\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"66\" cy=\"50\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"45\" cy=\"53\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"71\" cy=\"53\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"322\" cy=\"40\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"348\" cy=\"40\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"317\" cy=\"43\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"343\" cy=\"43\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"184\" cy=\"36\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"210\" cy=\"36\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"184\" cy=\"40\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"210\" cy=\"40\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"40\" cy=\"190\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"66\" cy=\"190\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"45\" cy=\"187\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"71\" cy=\"187\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"334\" cy=\"200\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"360\" cy=\"200\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"329\" cy=\"197\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"355\" cy=\"197\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"80\" cy=\"260\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"106\" cy=\"260\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"85\" cy=\"256\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"111\" cy=\"256\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"294\" cy=\"268\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"320\" cy=\"268\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"289\" cy=\"264\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"315\" cy=\"264\" r=\"3\"/>\u003c/g>\n\u003cg>\u003cellipse cx=\"350\" cy=\"120\" rx=\"11\" ry=\"7\"/>\u003cellipse cx=\"376\" cy=\"120\" rx=\"11\" ry=\"7\"/>\u003ccircle class=\"ink\" cx=\"345\" cy=\"121\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"371\" cy=\"121\" r=\"3\"/>\u003c/g>\n\u003c/g>\u003c/svg>"},{"title":"Replication crisis","url":"https://en.wikipedia.org/wiki/Replication_crisis","group":"In life","quote":"The replication crisis, also known as the reproducibility crisis or replicability crisis, is a widespread phenomenon in which published scientific results cannot be reproduced.","marked":"The replication crisis, also known as the reproducibility crisis or replicability crisis, is a widespread phenomenon in which \u0001published scientific results cannot be reproduced\u0002.","excerpt":"published scientific results cannot be reproduced","note":"Basically, science isn't always as sciencey as it claims to be.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M70 90 L70 200 Q70 215 85 215 L145 215 Q160 215 160 200 L160 90\"/>\n\u003cpath d=\"M70 140 Q92 132 115 140 Q138 148 160 140\"/>\n\u003ccircle cx=\"100\" cy=\"122\" r=\"5\"/>\u003ccircle cx=\"130\" cy=\"108\" r=\"4\"/>\u003ccircle cx=\"112\" cy=\"96\" r=\"3\"/>\n\u003ccircle class=\"ink\" cx=\"100\" cy=\"166\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"130\" cy=\"166\" r=\"3\"/>\n\u003cpath d=\"M98 184 Q115 198 132 184\"/>\n\u003cpath d=\"M240 90 L240 200 Q240 215 255 215 L315 215 Q330 215 330 200 L330 90\"/>\n\u003cpath d=\"M240 140 Q262 132 285 140 Q308 148 330 140\"/>\n\u003ccircle class=\"ink\" cx=\"270\" cy=\"166\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"300\" cy=\"166\" r=\"3\"/>\n\u003cpath d=\"M268 192 Q285 180 302 192\"/>\n\u003ctext class=\"hand\" x=\"115\" y=\"260\">IT WORKED\u003c/text>\n\u003ctext class=\"hand\" x=\"285\" y=\"260\">IT DID NOT\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Dramaturgy","url":"https://en.wikipedia.org/wiki/Dramaturgy_(sociology)","group":"In life","quote":"The fundamental difference between Burke's and Goffman's view, however, is that Burke believed that life was in fact theatre, whereas Goffman viewed theatre as a metaphor.","marked":"The fundamental difference between Burke's and Goffman's view, however, is that \u0001Burke believed that life was in fact theatre, whereas Goffman viewed theatre as a metaphor.\u0002","excerpt":"Burke believed that life was in fact theatre, whereas Goffman viewed theatre as a metaphor.","note":"One way of thinking about how technology helps change things. Technology is part of the context people operate in. People play different roles in different contexts. Ergo by giving people a different context you can enable them to play a different role.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003ccircle class=\"fill\" cx=\"250\" cy=\"104\" r=\"42\"/>\n\u003ccircle class=\"ink\" cx=\"264\" cy=\"96\" r=\"3\"/>\n\u003cpath d=\"M254 126 Q266 118 278 126\"/>\n\u003cpath d=\"M250 146 L250 252 M250 252 L230 290 M250 252 L270 290 M250 176 L214 200\"/>\n\u003cpath d=\"M208 198 L196 158\"/>\n\u003cpath class=\"fill\" d=\"M150 82 Q190 60 232 82 Q236 130 192 162 Q148 130 150 82 Z\"/>\n\u003cellipse class=\"ink\" cx=\"174\" cy=\"100\" rx=\"9\" ry=\"6\"/>\n\u003cellipse class=\"ink\" cx=\"210\" cy=\"100\" rx=\"9\" ry=\"6\"/>\n\u003cpath d=\"M168 124 Q192 148 216 124\"/>\n\u003c/g>\u003c/svg>"},{"title":"Banal nationalism","url":"https://en.wikipedia.org/wiki/Banal_nationalism","group":"In organisations","quote":"Banal nationalism refers to everyday representations of a nation, which build a sense of shared national identity. Examples include sports nationalism, the use of flags or national anthems in everyday contexts, and gastronationalism.","marked":"Banal nationalism refers to \u0001everyday representations of a nation, which build a sense of shared national identity\u0002. Examples include sports nationalism, the use of flags or national anthems in everyday contexts, and gastronationalism.","excerpt":"everyday representations of a nation, which build a sense of shared national identity","note":"Feelings of belonging or connection to a country (or maybe even a smaller community) come from small banal things, like seeing your country on a weather map, or eating baked beans.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cellipse class=\"fill\" cx=\"200\" cy=\"112\" rx=\"70\" ry=\"18\"/>\n\u003cpath d=\"M130 112 L130 250 Q200 274 270 250 L270 112\"/>\n\u003cpath d=\"M130 150 Q200 170 270 150 M130 214 Q200 234 270 214\"/>\n\u003cellipse cx=\"200\" cy=\"112\" rx=\"58\" ry=\"12\"/>\n\u003ctext class=\"hand\" x=\"200\" y=\"198\">BEANS\u003c/text>\n\u003cpath d=\"M224 108 L236 30\"/>\n\u003cpath class=\"fill\" d=\"M236 30 L290 38 L284 64 L233 56 Z\"/>\n\u003c/g>\u003c/svg>"},{"title":"Polite fiction","url":"https://en.wikipedia.org/wiki/Polite_fiction","group":"In organisations","quote":"A polite fiction is a social scenario in which all participants are aware of a truth, but pretend to believe in some alternative version of events to avoid conflict or embarrassment.","marked":"A polite fiction is a social scenario in which \u0001all participants are aware of a truth, but pretend to believe in some alternative version of events\u0002 to avoid conflict or embarrassment.","excerpt":"all participants are aware of a truth, but pretend to believe in some alternative version of events","note":"Where everyone plays along with a fiction they all know isn't really true.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003crect x=\"140\" y=\"36\" width=\"130\" height=\"110\"/>\n\u003crect x=\"152\" y=\"48\" width=\"106\" height=\"86\"/>\n\u003cpath d=\"M205 20 L140 36 M205 20 L270 36\"/>\n\u003ccircle class=\"fill\" cx=\"80\" cy=\"190\" r=\"12\"/>\n\u003cpath d=\"M80 202 L80 250 M80 250 L68 288 M80 250 L92 288 M80 214 L100 224 L94 206 M80 214 L100 230 L104 212\"/>\n\u003ccircle class=\"fill\" cx=\"330\" cy=\"190\" r=\"12\"/>\n\u003cpath d=\"M330 202 L330 250 M330 250 L318 288 M330 250 L342 288 M330 214 L310 224 L316 206 M330 214 L310 230 L306 212\"/>\n\u003ctext class=\"hand\" x=\"70\" y=\"160\">LOVELY\u003c/text>\n\u003ctext class=\"hand\" x=\"336\" y=\"160\">STUNNING\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Law of triviality","url":"https://en.wikipedia.org/wiki/Law_of_triviality","group":"In organisations","quote":"The law of triviality is C. Northcote Parkinson's 1957 argument that people within an organization commonly give disproportionate weight to trivial issues.","marked":"The law of triviality is C. Northcote Parkinson's 1957 argument that \u0001people within an organization commonly give disproportionate weight to trivial issues\u0002.","excerpt":"people within an organization commonly give disproportionate weight to trivial issues","note":"Aka 'Bike-shedding' spend time on trivial things to avoid talking about the big scary stuff","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M20 268 L380 268\"/>\n\u003cpath class=\"fill\" d=\"M250 268 Q274 170 256 70 L352 70 Q334 170 358 268 Z\"/>\n\u003cpath d=\"M262 64 Q258 40 280 42 Q286 20 308 30 Q322 14 338 34 Q360 34 352 60\"/>\n\u003cpath class=\"fill\" d=\"M60 200 L115 164 L170 200\"/>\n\u003crect class=\"fill\" x=\"72\" y=\"200\" width=\"86\" height=\"68\"/>\n\u003crect x=\"102\" y=\"222\" width=\"26\" height=\"46\"/>\n\u003ccircle class=\"fill\" cx=\"40\" cy=\"214\" r=\"9\"/>\u003cpath d=\"M40 223 L40 250 M40 250 L32 268 M40 250 L48 268 M40 232 L54 226\"/>\n\u003ccircle class=\"fill\" cx=\"196\" cy=\"214\" r=\"9\"/>\u003cpath d=\"M196 223 L196 250 M196 250 L188 268 M196 250 L204 268 M196 232 L182 226\"/>\n\u003ctext class=\"hand\" x=\"40\" y=\"186\">BLUE!\u003c/text>\n\u003ctext class=\"hand\" x=\"200\" y=\"186\">GREEN!\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Bystander effect","url":"https://en.wikipedia.org/wiki/Bystander_effect","group":"In organisations","quote":"The bystander effect (also called bystander apathy or the Genovese effect) is a social psychological theory that states that individuals are less likely to offer help to a victim in the presence of other people.","marked":"The bystander effect (also called bystander apathy or the Genovese effect) is a social psychological theory that states that \u0001individuals are less likely to offer help to a victim in the presence of other people\u0002.","excerpt":"individuals are less likely to offer help to a victim in the presence of other people","note":"An extreme example of the kind of paralysis that happens when accountability isn't clear","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M20 230 L210 230 Q222 230 226 244\"/>\n\u003cpath d=\"M226 244 Q246 236 266 244 Q286 252 306 244 Q326 236 346 244 Q366 252 386 244\"/>\n\u003ccircle class=\"fill\" cx=\"306\" cy=\"226\" r=\"12\"/>\n\u003cpath d=\"M300 232 Q306 228 312 232\"/>\n\u003cpath d=\"M316 220 L338 182 M332 178 L338 182 L344 176 M338 182 L346 186\"/>\n\u003ctext class=\"hand\" x=\"352\" y=\"166\">HELP\u003c/text>\n\u003cg>\u003ccircle class=\"fill\" cx=\"40\" cy=\"146\" r=\"11\"/>\u003cpath d=\"M40 157 L40 198 M40 198 L32 230 M40 198 L48 230 M40 168 L34 192 M40 168 L46 192\"/>\u003c/g>\n\u003cg>\u003ccircle class=\"fill\" cx=\"84\" cy=\"146\" r=\"11\"/>\u003cpath d=\"M84 157 L84 198 M84 198 L76 230 M84 198 L92 230 M84 168 L78 192 M84 168 L90 192\"/>\u003c/g>\n\u003cg>\u003ccircle class=\"fill\" cx=\"128\" cy=\"146\" r=\"11\"/>\u003cpath d=\"M128 157 L128 198 M128 198 L120 230 M128 198 L136 230 M128 168 L122 192 M128 168 L134 192\"/>\u003c/g>\n\u003cg>\u003ccircle class=\"fill\" cx=\"172\" cy=\"146\" r=\"11\"/>\u003cpath d=\"M172 157 L172 198 M172 198 L164 230 M172 198 L180 230 M172 168 L166 192 M172 168 L178 192\"/>\u003c/g>\n\u003ctext class=\"hand\" x=\"106\" y=\"90\">SOMEONE ELSE\u003c/text>\n\u003ctext class=\"hand\" x=\"106\" y=\"112\">WILL DO IT\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Argument from authority","url":"https://en.wikipedia.org/wiki/Argument_from_authority","group":"In organisations","quote":"An argument from authority (Latin: argumentum ab auctoritate, also called an appeal to authority, or argumentum ad verecundiam) is a form of argument in which the opinion of an authority figure (or figures) is used as evidence to support an argument.","marked":"An argument from authority (Latin: argumentum ab auctoritate, also called an appeal to authority, or argumentum ad verecundiam) is a form of argument in which \u0001the opinion of an authority figure (or figures) is used as evidence to support an argument\u0002.","excerpt":"the opinion of an authority figure (or figures) is used as evidence to support an argument","note":"When someone tells you we have to do something because it's in a plan, strategy or because someone important said we have to, instead of because it actually makes sense.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003crect class=\"fill\" x=\"104\" y=\"40\" width=\"44\" height=\"114\"/>\n\u003cpath d=\"M90 156 L162 156\"/>\n\u003ccircle class=\"fill\" cx=\"126\" cy=\"170\" r=\"14\"/>\n\u003cpath d=\"M126 184 L126 240 M126 240 L114 286 M126 240 L138 286 M126 200 L170 188 M126 206 L110 228\"/>\n\u003cpath class=\"fill\" d=\"M190 150 Q170 160 160 172 Q186 166 204 158\"/>\n\u003cellipse class=\"fill\" cx=\"282\" cy=\"110\" rx=\"96\" ry=\"50\"/>\n\u003ctext class=\"hand\" x=\"282\" y=\"104\">BECAUSE\u003c/text>\n\u003ctext class=\"hand\" x=\"282\" y=\"130\">I SAID SO\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Law of the instrument","url":"https://en.wikipedia.org/wiki/Law_of_the_instrument","group":"In organisations","quote":"Abraham Maslow wrote in 1966, \"it is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail.\"","marked":"Abraham Maslow wrote in 1966, \"\u0001it is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail.\u0002\"","excerpt":"it is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail.","note":"Aka 'If all you have is a hammer, everything looks like a nail'. This manifests in the way organisation try to apply the latest technology to any problem. It was apps, now it's AI.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath class=\"fill\" d=\"M96 30 L226 96 L218 112 L88 46 Z\"/>\n\u003cpath class=\"fill\" d=\"M214 66 L246 82 L226 128 L194 112 Z\"/>\n\u003ccircle class=\"fill\" cx=\"100\" cy=\"218\" r=\"26\"/>\n\u003crect class=\"fill\" x=\"88\" y=\"242\" width=\"24\" height=\"18\"/>\n\u003cpath d=\"M90 249 L110 249 M92 214 Q100 226 108 214\"/>\n\u003cpath class=\"fill\" d=\"M172 206 L180 256 L224 256 L232 206 Z\"/>\n\u003cpath d=\"M232 216 Q252 218 246 236 Q242 244 228 242 M160 262 L244 262\"/>\n\u003crect class=\"fill\" x=\"288\" y=\"196\" width=\"44\" height=\"68\" rx=\"6\"/>\n\u003cpath d=\"M300 254 L320 254\"/>\n\u003ctext class=\"hand\" x=\"100\" y=\"178\">NAIL?\u003c/text>\n\u003ctext class=\"hand\" x=\"202\" y=\"178\">NAIL?\u003c/text>\n\u003ctext class=\"hand\" x=\"310\" y=\"178\">NAIL?\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Mode effect","url":"https://en.wikipedia.org/wiki/Mode_effect","group":"In research","quote":"Mode effect is a broad term referring to a phenomenon where a particular survey administration mode causes different data to be collected.","marked":"Mode effect is a broad term referring to a phenomenon where \u0001a particular survey administration mode causes different data to be collected\u0002.","excerpt":"a particular survey administration mode causes different data to be collected","note":"The way you collect data, eg over the phone, online, in person, changes the data you collect.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath class=\"fill\" d=\"M56 210 L76 158 L164 158 L184 210 Z\"/>\n\u003ccircle cx=\"120\" cy=\"184\" r=\"15\"/>\n\u003ccircle class=\"ink\" cx=\"120\" cy=\"184\" r=\"3\"/>\n\u003cpath class=\"fill\" d=\"M58 152 Q58 132 72 132 Q120 110 168 132 Q182 132 182 152 L166 152 Q160 142 120 136 Q80 142 74 152 Z\"/>\n\u003ccircle class=\"fill\" cx=\"292\" cy=\"160\" r=\"46\"/>\n\u003ccircle class=\"ink\" cx=\"276\" cy=\"150\" r=\"3\"/>\u003ccircle class=\"ink\" cx=\"308\" cy=\"150\" r=\"3\"/>\n\u003cpath d=\"M276 182 Q292 170 308 182\"/>\n\u003cpath class=\"fill\" d=\"M314 160 Q308 172 314 178 Q320 172 314 160 Z\"/>\n\u003ctext class=\"hand\" x=\"120\" y=\"260\">FINE, THANKS\u003c/text>\n\u003ctext class=\"hand\" x=\"292\" y=\"260\">NOT FINE\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Curse of knowledge","url":"https://en.wikipedia.org/wiki/Curse_of_knowledge","group":"In research","quote":"The curse of knowledge, also called the curse of expertise or expert's curse, is a cognitive bias that occurs when a person who has specialized knowledge assumes that others share in that knowledge.","marked":"The curse of knowledge, also called the curse of expertise or expert's curse, is a cognitive bias that occurs when \u0001a person who has specialized knowledge assumes that others share in that knowledge\u0002.","excerpt":"a person who has specialized knowledge assumes that others share in that knowledge","note":"Why user research is useful","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003ccircle class=\"fill\" cx=\"118\" cy=\"104\" r=\"62\"/>\n\u003cpath d=\"M84 84 Q98 64 114 84 Q128 104 140 78 Q150 60 160 86 M80 112 Q96 96 108 118 Q122 138 136 112 Q148 92 156 120 M96 140 Q112 126 124 142 Q134 154 144 138\"/>\n\u003cpath d=\"M118 166 L118 240 M118 240 L104 288 M118 240 L132 288 M118 186 L172 176 M118 192 L96 220\"/>\n\u003ccircle class=\"fill\" cx=\"306\" cy=\"212\" r=\"12\"/>\n\u003cpath d=\"M306 224 L306 262 M306 262 L298 288 M306 262 L314 288 M306 234 L294 250 M306 234 L318 250\"/>\n\u003ctext class=\"hand\" x=\"306\" y=\"186\">?\u003c/text>\n\u003ctext class=\"hand\" x=\"290\" y=\"70\">IT IS\u003c/text>\n\u003ctext class=\"hand\" x=\"290\" y=\"96\">OBVIOUS\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Sampling bias","url":"https://en.wikipedia.org/wiki/Sampling_bias","group":"In research","quote":"If this is not accounted for, results can be erroneously attributed to the phenomenon under study rather than to the method of sampling.","marked":"If this is not accounted for, \u0001results can be erroneously attributed to the phenomenon under study rather than to the method of sampling\u0002.","excerpt":"results can be erroneously attributed to the phenomenon under study rather than to the method of sampling","note":"For years I worried about sample size when I should have been worrying about sampling bias. Even if your sample is big enough, if you haven't sampled randomly your results aren't representative.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003cpath d=\"M70 64 L330 64 L252 236 L148 236 Z\"/>\n\u003cpath d=\"M120 64 L170 236 M180 64 L200 236 M240 64 L230 236 M290 64 L252 200 M104 110 L310 110 M124 160 L288 160 M140 204 L266 204\"/>\n\u003cpath class=\"fill\" d=\"M130 132 Q170 108 216 132 Q170 156 130 132 Z M216 132 L236 116 L232 148 Z\"/>\n\u003ccircle class=\"ink\" cx=\"148\" cy=\"128\" r=\"3\"/>\n\u003cpath class=\"fill\" d=\"M190 184 Q228 162 268 184 Q228 206 190 184 Z M190 184 L172 170 L174 198 Z\"/>\n\u003ccircle class=\"ink\" cx=\"252\" cy=\"180\" r=\"3\"/>\n\u003cpath d=\"M330 252 Q340 246 352 252 Q340 258 330 252 Z M352 252 L360 246 L360 258\"/>\n\u003cpath d=\"M290 274 Q300 268 312 274 Q300 280 290 274 Z M312 274 L320 268 L320 280\"/>\n\u003cpath d=\"M56 262 Q66 256 78 262 Q66 268 56 262 Z M56 262 L48 256 L48 268\"/>\n\u003ctext class=\"hand\" x=\"200\" y=\"40\">ALL FISH ARE BIG\u003c/text>\n\u003c/g>\u003c/svg>"},{"title":"Simpson's paradox","url":"https://en.wikipedia.org/wiki/Simpson%27s_paradox","group":"In research","quote":"Simpson's paradox is a phenomenon in probability and statistics in which a trend appears in several groups of data but disappears or reverses when the groups are combined.","marked":"Simpson's paradox is a phenomenon in probability and statistics in which \u0001a trend appears in several groups of data but disappears or reverses when the groups are combined\u0002.","excerpt":"a trend appears in several groups of data but disappears or reverses when the groups are combined","note":"Looking at high level aggregate data obscures or reverses important underlying trends and nuance. Classic central gov problem.","drawing":"\u003csvg aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\">\u003cg filter=\"url(#wobble)\">\n\u003ccircle class=\"ink\" cx=\"70\" cy=\"120\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"88\" cy=\"112\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"102\" cy=\"104\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"118\" cy=\"98\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"134\" cy=\"88\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"148\" cy=\"82\" r=\"4\"/>\n\u003ccircle class=\"ink\" cx=\"236\" cy=\"246\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"254\" cy=\"238\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"270\" cy=\"232\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"288\" cy=\"222\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"304\" cy=\"216\" r=\"4\"/>\u003ccircle class=\"ink\" cx=\"320\" cy=\"206\" r=\"4\"/>\n\u003cpath d=\"M62 138 L160 70 M146 70 L160 70 L154 84\"/>\n\u003cpath d=\"M228 264 L330 192 M316 192 L330 192 L324 206\"/>\n\u003cpath d=\"M40 50 L370 278 M352 278 L370 278 L362 262\" stroke-dasharray=\"10 9\"/>\n\u003ctext class=\"hand\" x=\"88\" y=\"62\">UP\u003c/text>\n\u003ctext class=\"hand\" x=\"252\" y=\"186\">UP\u003c/text>\n\u003ctext class=\"hand\" x=\"330\" y=\"120\">DOWN\u003c/text>\n\u003c/g>\u003c/svg>"}];
+
+    function sizeFor(text, mode) {
+      const n = text.length;
+      if (mode !== 'poster') return n <= 200 ? 4.2 : n <= 360 ? 3.6 : 3.1;
+      return Math.max(3.8, Math.min(6.6, 6.6 - (n - 50) * 0.022)).toFixed(2);
+    }
+
+    function esc(s) {
+      return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    function paras(html) {
+      return html.split(/\n+/).map(t => '<p>' + t.trim() + '</p>').join('');
+    }
+
+    function noteHTML(text) {
+      return paras(esc(text).replace(/\[([^\]]+)\]\(([^()\s]+(?:\([^()\s]*\)[^()\s]*)?)\)/g, '<a href="$2">$1</a>'));
+    }
+
+    function bodyHTML(p, mode) {
+      if (mode === 'full') return paras(esc(p.marked)).replace(/\u0001([^]*?)\u0002/g, '<mark>$1</mark>');
+      if (mode === 'note') return noteHTML(p.note);
+      return paras(esc(p.excerpt));
+    }
+
+    function posterHTML(p, i, tag, mode) {
+      mode = mode || 'poster';
+      const text = mode === 'note' ? p.note : mode === 'full' ? p.quote : p.excerpt;
+      const attrs = tag === 'a' ? ' href="#' + (i + 1) + '" aria-label="' + esc(p.title) + '"' : '';
+      return '<' + tag + ' class="poster"' + attrs + '>' +
+        '<div class="poster-inner">' +
+          (p.drawing ? '<div class="drawing">' + p.drawing + '</div>' : '') +
+          '<div class="quote m-' + mode + '" style="--size:' + sizeFor(text, mode) + '">' + bodyHTML(p, mode) + '</div>' +
+        '</div>' +
+        '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + ' on Wikipedia</a><br><span class="group">' + esc(p.group) + '</span></div>' +
+        '</' + tag + '>';
+    }
+
+    // The wall, in groups
+    const groups = [];
+    ideas.forEach((p, i) => {
+      let g = groups.find(g => g.name === p.group);
+      if (!g) groups.push(g = { name: p.group, items: [] });
+      g.items.push(posterHTML(p, i, 'a'));
+    });
+    document.getElementById('wall').innerHTML = groups.map(g =>
+      '<h2>' + esc(g.name) + '</h2><div class="wall">' + g.items.join('') + '</div>').join('');
+
+    const single = document.getElementById('single');
+    let current = -1;
+    let mode = 'poster';
+
+    function show(i) {
+      single.classList.toggle('fresh', i !== current);
+      if (i !== current) mode = 'poster';
+      current = (i + ideas.length) % ideas.length;
+      const p = ideas[current];
+      const toggle = (m, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + (mode === m) + '">' + label + '</button>';
+      single.innerHTML = posterHTML(p, current, 'div', mode) +
+        '<div class="controls">' +
+          (p.excerpt !== p.quote ? toggle('full', 'Full quote') : '') +
+          (p.note ? toggle('note', 'My note') : '') +
+          '<span class="count">' + (current + 1) + ' of ' + ideas.length + '</span>' +
+          '<button type="button" data-go="-1">Previous</button>' +
+          '<button type="button" data-go="1">Next</button>' +
+          '<a href="#">View all</a>' +
+        '</div>';
+      document.body.classList.add('is-single');
+      document.title = p.title + ' – ideas that mean something';
+    }
+
+    function go(step) { location.hash = '#' + (((current + step + ideas.length) % ideas.length) + 1); }
+
+    function route() {
+      const n = parseInt(location.hash.slice(1), 10);
+      if (n >= 1 && n <= ideas.length) {
+        show(n - 1);
+      } else {
+        const was = current;
+        current = -1;
+        document.body.classList.remove('is-single');
+        document.title = 'ideas that mean something';
+        if (was >= 0) document.querySelectorAll('.wall .poster')[was]?.focus();
+      }
+    }
+
+    single.addEventListener('click', e => {
+      const m = e.target.closest('[data-mode]');
+      if (m) { mode = mode === m.dataset.mode ? 'poster' : m.dataset.mode; return show(current); }
+      const btn = e.target.closest('[data-go]');
+      if (btn) return go(+btn.dataset.go);
+      if (e.target.closest('a, .controls')) return;
+      go(e.clientX < window.innerWidth / 3 ? -1 : 1);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (current < 0) return;
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'Escape') location.hash = '';
+    });
+
+    let touchX = null;
+    single.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    single.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+    });
+
+    window.addEventListener('hashchange', route);
+    route();
+  </script>
+</body>
+</html>

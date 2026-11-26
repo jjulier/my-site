@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<rect x="140" y="36" width="130" height="110"/>
+<rect x="152" y="48" width="106" height="86"/>
+<path d="M205 20 L140 36 M205 20 L270 36"/>
+<circle class="fill" cx="80" cy="190" r="12"/>
+<path d="M80 202 L80 250 M80 250 L68 288 M80 250 L92 288 M80 214 L100 224 L94 206 M80 214 L100 230 L104 212"/>
+<circle class="fill" cx="330" cy="190" r="12"/>
+<path d="M330 202 L330 250 M330 250 L318 288 M330 250 L342 288 M330 214 L310 224 L316 206 M330 214 L310 230 L306 212"/>
+<text class="hand" x="70" y="160">LOVELY</text>
+<text class="hand" x="336" y="160">STUNNING</text>
+</g></svg>

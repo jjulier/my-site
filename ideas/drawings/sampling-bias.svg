@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M70 64 L330 64 L252 236 L148 236 Z"/>
+<path d="M120 64 L170 236 M180 64 L200 236 M240 64 L230 236 M290 64 L252 200 M104 110 L310 110 M124 160 L288 160 M140 204 L266 204"/>
+<path class="fill" d="M130 132 Q170 108 216 132 Q170 156 130 132 Z M216 132 L236 116 L232 148 Z"/>
+<circle class="ink" cx="148" cy="128" r="3"/>
+<path class="fill" d="M190 184 Q228 162 268 184 Q228 206 190 184 Z M190 184 L172 170 L174 198 Z"/>
+<circle class="ink" cx="252" cy="180" r="3"/>
+<path d="M330 252 Q340 246 352 252 Q340 258 330 252 Z M352 252 L360 246 L360 258"/>
+<path d="M290 274 Q300 268 312 274 Q300 280 290 274 Z M312 274 L320 268 L320 280"/>
+<path d="M56 262 Q66 256 78 262 Q66 268 56 262 Z M56 262 L48 256 L48 268"/>
+<text class="hand" x="200" y="40">ALL FISH ARE BIG</text>
+</g></svg>

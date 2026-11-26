@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M42 150 Q90 115 160 133 Q185 139 192 150 Q170 165 120 168 Q70 170 42 150 Z"/>
+<path d="M98 125 L114 92 L130 131"/>
+<path d="M44 150 L18 122 Q30 150 18 180 Z"/>
+<circle class="ink" cx="166" cy="144" r="3"/>
+<path d="M146 140 L144 154 M152 140 L150 155"/>
+<path d="M168 158 Q178 161 188 153"/>
+<path d="M242 150 Q290 117 352 133 Q368 137 390 146 L374 151 Q350 166 310 168 Q270 170 242 150 Z"/>
+<path d="M298 124 Q308 100 324 96 Q314 114 324 130"/>
+<path d="M244 150 L216 134 Q228 150 216 168 Z"/>
+<circle class="ink" cx="350" cy="143" r="3"/>
+<path d="M356 154 Q366 157 376 151"/>
+<text class="hand" x="110" y="228">FISH</text>
+<text class="hand" x="312" y="228">NOT A FISH</text>
+</g></svg>

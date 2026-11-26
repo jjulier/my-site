@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path d="M20 252 L380 252"/>
+<rect x="110" y="56" width="140" height="196"/>
+<path d="M150 160 Q140 112 168 88 Q180 78 196 84 L222 122 Q232 138 218 144 Q204 147 196 136 L190 128 Q190 146 208 160"/>
+<path d="M170 86 L164 66 L180 82 M182 82 L184 62 L194 80"/>
+<circle class="ink" cx="190" cy="104" r="3"/>
+<circle class="ink" cx="216" cy="135" r="2"/>
+<rect class="fill" x="110" y="160" width="140" height="92"/>
+<path d="M110 190 L250 190 M110 220 L250 220 M112 162 L248 250"/>
+<path d="M320 252 L320 150"/>
+<rect class="fill" x="270" y="96" width="104" height="58"/>
+<text class="hand" x="322" y="120">THIS ONE</text>
+<text class="hand" x="322" y="145">OR NONE</text>
+</g></svg>

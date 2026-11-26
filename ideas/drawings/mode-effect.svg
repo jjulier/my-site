@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<path class="fill" d="M56 210 L76 158 L164 158 L184 210 Z"/>
+<circle cx="120" cy="184" r="15"/>
+<circle class="ink" cx="120" cy="184" r="3"/>
+<path class="fill" d="M58 152 Q58 132 72 132 Q120 110 168 132 Q182 132 182 152 L166 152 Q160 142 120 136 Q80 142 74 152 Z"/>
+<circle class="fill" cx="292" cy="160" r="46"/>
+<circle class="ink" cx="276" cy="150" r="3"/><circle class="ink" cx="308" cy="150" r="3"/>
+<path d="M276 182 Q292 170 308 182"/>
+<path class="fill" d="M314 160 Q308 172 314 178 Q320 172 314 160 Z"/>
+<text class="hand" x="120" y="260">FINE, THANKS</text>
+<text class="hand" x="292" y="260">NOT FINE</text>
+</g></svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><g filter="url(#wobble)">
+<ellipse class="fill" cx="200" cy="112" rx="70" ry="18"/>
+<path d="M130 112 L130 250 Q200 274 270 250 L270 112"/>
+<path d="M130 150 Q200 170 270 150 M130 214 Q200 234 270 214"/>
+<ellipse cx="200" cy="112" rx="58" ry="12"/>
+<text class="hand" x="200" y="198">BEANS</text>
+<path d="M224 108 L236 30"/>
+<path class="fill" d="M236 30 L290 38 L284 64 L233 56 Z"/>
+</g></svg>

@@ -1,0 +1,166 @@
+# Link quotes
+
+Each link is a section: a `## [Title](url)` heading, then `Author, date`, then the quote as a `>` block. Highlight the part to show on the poster with ==double equals==. Newest at the top.
+
+## [What went wrong with the BoM Redesign?](https://leisareichelt.substack.com/p/what-went-wrong-with-the-bom-redesign)
+Leisa Reichelt, 2026-03-17
+
+> Second, tasks were sometimes framed around site features rather than underlying goals. For example:
+>
+> You have saved some locations as favourites and want to access them now. How would you do that?
+>
+> Feature-led tasks reduce friction in testing and make it harder to detect whether the design meaningfully supports the task. Neither of these choices are outrageous. Both are common.
+>
+> ==But both bias results toward reassurance rather than discovery.==
+
+Excellent detailed description of the subtle difference between useful and much less useful user research
+
+## [People are not friction](https://daverupert.com/2026/03/people-are-not-friction/?utm_campaign=ux-works-through-social-relationships-ai-tools-are-erasing-them&utm_medium=referral&utm_source=productpicnic.beehiiv.com)
+Dave Rupert, 2026-03-20
+
+> The Gell-Mann amnesia effect is a cognitive bias describing the tendency of individuals to ==critically assess media reports in a domain they are knowledgeable about, yet continue to trust reporting in other areas== despite recognizing similar potential inaccuracies.
+
+I was chatting to my mum about AI and this exact thing at the weekend...
+
+## [My Claude Code Psychosis](https://jasmi.news/p/claude-code?utm_source=substack&utm_medium=email&hide_intro_popup=true)
+Jasmine Sun, 2026-01-23
+
+> If you tell a friend they can now instantly create any app, they’ll probably say “Cool! Now I need to think of an idea.” Then they will forget about it, and never build a thing. The problem is not that your friend is horribly uncreative. It’s that ==most people’s problems are not software-shaped, and most won’t notice even when they are.==
+
+This is a super entertaining piece and reckons with the question of whether people will start building their own little bits of software which is an interesting thread to pull at.
+
+## [Software Bonkers](https://craigmod.com/essays/software_bonkers/)
+Craig Mod, 2026-03
+
+> We’re still in the dorks-only phase of model-assisted programming, but I can imagine soon-to-arrive interfaces where you just drag and drop components while narrating your desires with your voice, the models able to perform the “brainstorming,” “planning,” and “work” — operations that can take ten minutes or longer today — in mere seconds tomorrow. ==There will be a fluidity to software in the future. Version numbers will be pointless. We’ll all have our own versions.== Claude Code be our partner in production. As you imagine new features, Claude produces them. Why would we lock ourselves into someone else’s proprietary binary?
+
+Why would we lock ourselves into someone else's proprietary binary is definitely a question I've been asking myself recently. There will be a reason why we will, but not clear what it will be.
+
+## [What inspired you?](https://designlobster.substack.com/p/169-what-inspired-you)
+Ben Strak, 2026-03-09
+
+> ==Taste gets talked about as though it were the highest creative faculty==: the one thing the machines will never be able to take from us. The one thing, no less, we’ll need if we want to have a job in a few years.
+
+This post didn't pan out the way I hoped it would but it did make me reflect on this point about taste a bit more, so that was good.
+
+## [Understanding user experience in lung cancer screening beyond user needs - NHS](https://design-history.prevention-services.nhs.uk/lung-health-check/2026/03/beyond-user-needs/)
+Mike Watson, 2026-03-04
+
+> ==Sometimes user needs unintentionally frame users as ‘request makers’ who are making demands of the service.== The ‘7 lenses’ framework shifts the conversation away from what users are asking the service to do, and towards how they are actually experiencing it.
+
+Fantastic work
+
+## [Land and Expand – how Palantir captured the Ministry of Defence](https://davidallengreen.com/2026/02/land-and-expand-how-palantir-captured-the-ministry-of-defence/)
+Dave Allen Green, 2026-02-23
+
+> The concerns I express are about how the Ministry of Defence dealt with these procurements. In respect of Palantir, their land-and-expand approach is nothing other than what any rational if cynical economic agent would do when faced with the lucrative opportunities presented to it by Ministry of Defence. ==They appear to have done what they could get away with and perfectly lawfully.==
+
+This pushed at my tolerance for detail on the topic, but was worth it to slightly improve my understanding of how government procurement works. Also an interesting contrast to the other piece I read about Palantir.
+
+## [UX Design Legends](https://chatgpt.com/share/6991a8e7-6338-800c-b918-c4a96684e46a)
+Unknown, 2026-02-01
+
+> ## Personas & Lenses
+>
+> Simulate the following agents with non-overlapping focus:
+>
+> ### 1. Don Norman — Mental Model Integrity
+> Focus:
+> - Affordances
+> - Visibility of system state
+> - Mapping between controls and outcomes
+> - Error prevention and recovery
+> - Mental model coherence
+>
+> ==Avoid aesthetic commentary.==
+>
+> ---
+>
+> ### 2. Dieter Rams — Reduction & Necessity
+> Focus:
+> - Feature necessity
+> - Elimination opportunities
+> - Signal-to-noise ratio
+> - Structural simplicity
+> - Long-term maintainability
+>
+> Avoid micro-UX nitpicks.
+
+This is a chatgpt conversation where someone created a UX review skill. It's the first time I've seen this idea and also see share a full chat with chatgpt. Unfortunately no idea whose it is as I discovered via linkedin and didn't save the post.
+
+## [How to Write a Good User Research Report](https://medium.com/@benweedonresearch/how-to-write-a-good-user-research-report-7a82d0a96968)
+Ben Weedon, 2025-02-26
+
+> A user research report isn't just a record of what you learned — it's a tool for driving action
+
+This is excellent advice and it was reassuring to see another researcher advocating for strong, tightly defined recommendations, as sometimes I worry I'm overstepping in my write ups.
+
+## [Unlocking healthtech opportunities using Certeau's "strategies" and "tactics"](https://stripepartners.substack.com/p/this-months-frame-unlocking-healthtech)
+Stripe Partners, 2026-02-06
+
+> The distinction between strategies and tactics reveals a critical blind spot: ==health systems are designed around strategies, while the majority of patient decision-making happens tactically.== Misinformation often emerges not from tactics, but from the absence of structured pathways that allow tactical knowledge to safely interact with expert systems.
+
+Stripe's newsletter is one of the best. This one was especially satisfying for me because it explained a feeling and half formed thought I'd had much better than I ever could.
+
+## [Now is a good time to shut up about AI](https://substack.com/@ftav/p-188368455)
+Alphaville, 2026-02-20
+
+> AI's pushiest evangelists are either full-time conference types, talking airily about how workers need to adapt in undefined ways for the Fourth Industrial Revolution, or earnest computer people who lionise their own small contributions to the rising tide of slop. ==Valuelessness comes in stereo.== No wonder it's cathartic to tell both sides to bog off.
+
+Wish I could write like this. Such skewering.
+
+## [Fault tolerance](https://en.wikipedia.org/wiki/Fault_tolerance)
+Contributors to Wikimedia projects, 2005-06-22
+
+> A system that is designed to ==fail safe, or fail-secure, or fail gracefully==, whether it functions at a reduced level or fails completely, does so in a way that protects people, property, or data from injury, damage, intrusion, or disclosure.
+
+I went looking for this after something at work prompted me to think about how we dedicate a disproportionate amount of time to designing for when everything is working. There must be tools and techniques out there to help us design services that fail gracefully.
+
+## [When Designers Start Shipping Real Code](https://www.youtube.com/watch?v=_acdhjOLvBs&t=1616s)
+Emmet Connolly, 2025-10-08
+
+> In intercom we set a goal for ourselves for the product design team. There's about 30 designers in this group and ==I asked all the product designers to ship a code change== in Q2 to ship a pull request like ship code to production.
+
+Spoiler: all the designers did ship a code change! Interesting because the other video I watched recently was Ryo Lu talking about wanting all the designers to become developers. There is another bit in the video where Emmet talks about the jury still being out on whether AI makes developers more productive, but says that it definitely changes the designers role.
+
+## [Overfitting and the problem with use cases](https://medium.com/design-bootcamp/overfitting-and-the-problem-with-use-cases-337d9f4bf4d7)
+Joe McLean, 2023-05-20
+
+> Users bring their own creative goals to our product. They're incredibly diverse and often non-linear. ==I believe it's best to think of a use case as a test case to see if your basic tools are working.==
+
+This is written by a product manager at Miro, but the point he's making applies to many, many products and services. It would have been a super useful framing when I was working at the FT.
+
+## [The Age of Academic Slop is Upon Us](https://hegemon.substack.com/p/the-age-of-academic-slop-is-upon)
+Seva Gunitsky, 2026-01-13
+
+> ==Claude Code and its ilk are coming for the study of politics like a freight train.== A single academic is going to be able to write thousands of empirical papers per year. We'll need to find new ways of organizing and disseminating political science research in the very near future for this deluge.
+
+Good to read about the impact of AI in a totally different context. It seems that in design the answer to the question of how you respond to abundance is 'taste' or 'curation'. Interesting to see a very similar conclusion reached here. Not 100% sure it's the right one.
+
+## [Universal Barriers to Access](https://uteschauberger.com/barrierstoaccess.html)
+Ute Schauberger, 2025-01-01
+
+> Designing for everyone means looking beyond surface categories like demographics or digital skill. A digital interface doesn't just require technical ability — ==it asks for time, trust, money for data, a quiet moment, a private connection, confidence, and even awareness that the service exists.==
+
+Something to share if someone asks about digital inclusion
+
+## [Paint the world](https://wplace.live/)
+Murilo Matsubara, 2025-07-21
+
+> Wplace is a collaborative, real-time pixel canvas layered over the world map, where ==anyone can paint and create art together.==
+
+A kind of iteration of the The Million Dollar Homepage, 20 years later.
+
+## [Design in the (AI) loop](https://www.katherinewastell.com/blog/2026/3/2/design-in-the-ai-loop)
+Katherine Wastell, 2026-03-02
+
+> ==What if AI became the connective tissue of a team==, something that lives in the gaps between people. That carries memory across time: the decisions made, the reasoning behind them, the things tried and abandoned.
+
+I think this is the pitch Notion currently makes. I wonder whether we'll reach a point where it's easier just to give the whole problem to the ai, than maintain a whole team and use ai to keep everyone focused on the same problem.
+
+## [Getting a grip](https://www.rpp.works/ways-of-doing/getting-a-grip/)
+Richard Pope, 2026-03-02
+
+> the job of the designer/technologist in this world becomes designing a series of objects that can be acted on by an AI agent - ==they need to be grippable, for lack of a better term.==
+
+This is exactly what Ryo Lu talks about in that video. Decomposing the service into it's constituent parts.
