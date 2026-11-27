@@ -46,7 +46,7 @@ function generatePostersPage(links) {
       if (!excerpt) return null;
       marked = link.quote.replace(excerpt, '\u0001' + excerpt + '\u0002');
     }
-    return { quote: link.quote, marked, excerpt, title: link.title || link.url, url: link.url, author: link.author || '' };
+    return { quote: link.quote, marked, excerpt, title: link.title || link.url, url: link.url, author: link.author || '', note: link.commentary || '' };
   }).filter(Boolean).map((p, i) => ({ ...p, style: i % STYLES.length }));
 
   const data = JSON.stringify({ posters, styles: STYLES }).replace(/</g, '\\u003c');
@@ -102,6 +102,20 @@ function generatePostersPage(links) {
     .quote.short p { text-wrap: balance; }
     .quote.full { color: color-mix(in srgb, var(--ink) 42%, var(--bg)); }
     .quote.full mark { background: none; color: var(--ink); }
+    /* The note hangs under the quote like an annotation, so the quote doesn't move. */
+    .quote { position: relative; }
+    .quote .note {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding-top: calc(3 * var(--u));
+      font-size: max(16px, calc(3 * var(--u)));
+      line-height: 1.35;
+      letter-spacing: normal;
+      color: var(--ink);
+      font-style: var(--note-style);
+    }
 
     /* Wall */
     .wall-head {
@@ -135,7 +149,6 @@ function generatePostersPage(links) {
       box-shadow: 0 14px 30px -14px rgba(0,0,0,.45);
       outline: none;
     }
-    .wall .meta { display: none; }
 
     /* Single poster, filling the screen */
     .single { display: none; }
@@ -144,25 +157,30 @@ function generatePostersPage(links) {
     body.is-single .wall-view { display: none; }
     .single .poster { position: absolute; inset: 0; }
     .single .poster-inner { --u: min(1cqi, 0.62cqb); align-items: flex-start; padding-left: max(calc(9 * var(--u)), calc(50cqi - 46 * var(--u))); }
-    .meta {
-      position: absolute;
-      left: 24px;
-      bottom: 22px;
-      right: 280px;
-      font-family: 'Playfair Display', serif;
-      font-style: normal;
-      line-height: 1.4;
-    }
-    .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .meta .author { opacity: .7; }
-    .controls {
+    /* The title and controls share one bar along the bottom. The title takes the room the
+       controls leave, and when that gets too narrow the controls wrap onto their own row. */
+    .bar {
       position: fixed;
+      left: 24px;
       right: 24px;
       bottom: 22px;
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px 40px;
       color: var(--ink);
+      font-family: 'Playfair Display', serif;
+      font-style: normal;
+      line-height: 1.4;
       z-index: 2;
+    }
+    .meta { flex: 1 1 22em; }
+    .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .meta .author { opacity: .7; }
+    .controls {
+      display: flex;
+      gap: 20px;
     }
     .controls > * { white-space: nowrap; }
     .controls a, .controls button {
@@ -173,7 +191,7 @@ function generatePostersPage(links) {
       padding: 0;
       cursor: pointer;
     }
-    .controls a:hover, .controls button:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .controls a:hover, .controls button:hover, .controls [aria-pressed="true"] { text-decoration: underline; text-underline-offset: 3px; }
     .controls .count { opacity: .7; font-variant-numeric: tabular-nums; }
     .single.fresh .poster { animation: fade .5s ease; }
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
@@ -183,8 +201,8 @@ function generatePostersPage(links) {
       h1 { margin-left: 16px; margin-right: 16px; }
       .wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .single .poster-inner { --u: min(1cqi, 0.6cqb); padding: 12cqi 8cqi 30cqi; }
-      .meta { left: 16px; right: 16px; bottom: 64px; }
-      .controls { left: 16px; right: 16px; bottom: 22px; gap: 16px; justify-content: flex-start; }
+      .bar { left: 16px; right: 16px; }
+      .controls { flex: 1 1 100%; gap: 16px; }
       .controls .count { display: none; }
       .controls a { margin-left: auto; }
     }
@@ -234,18 +252,27 @@ function generatePostersPage(links) {
         .replace(/\u0001([^]*?)\u0002/g, (m, x) => '<mark>' + x.split('</p><p>').join('</mark></p><p><mark>') + '</mark>');
     }
 
-    function posterHTML(p, i, tag, full) {
+    function noteHTML(text) {
+      return text.split(/\\n+/).map(t => '<p>' + esc(t.trim()) + '</p>').join('');
+    }
+
+    // Full quote and Note are separate: Note hangs under whichever quote is showing.
+    function posterHTML(p, i, tag, full, note) {
       const s = styles[p.style];
       const text = full ? p.quote : p.excerpt;
       const paras = full ? fullHTML(p) : p.excerpt.split(/\\n+/).map(t => '<p>' + esc(t.trim()) + '</p>').join('');
       const vars = '--bg:' + s.bg + ';--ink:' + s.ink + ';--font:' + s.font +
-        ';--style:' + (s.italic ? 'italic' : 'normal') + ';--size:' + sizeFor(text);
+        ';--style:' + (s.italic ? 'italic' : 'normal') + ';--note-style:' + (s.italic ? 'normal' : 'italic') + ';--size:' + sizeFor(text);
       const attrs = tag === 'a' ? ' href="#' + (i + 1) + '" aria-label="Poster ' + (i + 1) + ': ' + esc(p.title) + '"' : '';
       return '<' + tag + ' class="poster" style="' + vars + '"' + attrs + '>' +
-        '<div class="poster-inner"><div class="quote' + (full ? ' full' : '') + (text.length < 160 ? ' short' : '') + '">' + paras + '</div></div>' +
-        '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a>' +
-        (p.author ? '<br><span class="author">' + esc(p.author) + '</span>' : '') + '</div>' +
+        '<div class="poster-inner"><div class="quote' + (full ? ' full' : '') + (text.length < 160 ? ' short' : '') + '">' + paras +
+          (note ? '<div class="note">' + noteHTML(p.note) + '</div>' : '') + '</div></div>' +
         '</' + tag + '>';
+    }
+
+    function metaHTML(p) {
+      return '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a>' +
+        (p.author ? '<br><span class="author">' + esc(p.author) + '</span>' : '') + '</div>';
     }
 
     document.getElementById('wall').innerHTML = posters.map((p, i) => posterHTML(p, i, 'a')).join('');
@@ -253,21 +280,27 @@ function generatePostersPage(links) {
     const single = document.getElementById('single');
     let current = -1;
     let full = false;
+    let note = false;
 
     function show(i) {
       single.classList.toggle('fresh', i !== current);
       current = (i + posters.length) % posters.length;
       const p = posters[current];
       const s = styles[p.style];
-      // Full quote stays on as you move between posters, for those that have more to show.
-      single.innerHTML = posterHTML(p, current, 'div', full && p.excerpt !== p.quote) +
-        '<div class="controls" style="--ink:' + s.ink + '">' +
-          (p.excerpt !== p.quote ? '<button type="button" data-full>' + (full ? 'Excerpt' : 'Full quote') + '</button>' : '') +
+      // Full quote and Note stay on as you move between posters, for those that have one.
+      const showFull = full && p.excerpt !== p.quote;
+      const showNote = note && !!p.note;
+      const toggle = (m, on, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + on + '">' + label + '</button>';
+      single.innerHTML = posterHTML(p, current, 'div', showFull, showNote) +
+        '<div class="bar" style="--ink:' + s.ink + '">' + metaHTML(p) +
+        '<div class="controls">' +
+          (p.excerpt !== p.quote ? toggle('full', showFull, 'Full quote') : '') +
+          (p.note ? toggle('note', showNote, 'Note') : '') +
           '<span class="count">' + (current + 1) + ' of ' + posters.length + '</span>' +
           '<button type="button" data-go="-1">Previous</button>' +
           '<button type="button" data-go="1">Next</button>' +
           '<a href="#">View all</a>' +
-        '</div>';
+        '</div></div>';
       document.body.classList.add('is-single');
       document.title = posters[current].title + ' – link quote posters';
       document.querySelector('meta[name=theme-color]')?.setAttribute('content', s.bg);
@@ -289,10 +322,15 @@ function generatePostersPage(links) {
     }
 
     single.addEventListener('click', e => {
-      if (e.target.closest('[data-full]')) { full = !full; return show(current); }
+      const m = e.target.closest('[data-mode]');
+      if (m) {
+        if (m.dataset.mode === 'full') full = m.getAttribute('aria-pressed') !== 'true';
+        else note = m.getAttribute('aria-pressed') !== 'true';
+        return show(current);
+      }
       const btn = e.target.closest('[data-go]');
       if (btn) return go(+btn.dataset.go);
-      if (e.target.closest('a, .controls')) return;
+      if (e.target.closest('a, .bar')) return;
       // Click the left third to go back, anywhere else to go forward.
       go(e.clientX < window.innerWidth / 3 ? -1 : 1);
     });

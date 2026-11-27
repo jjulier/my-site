@@ -111,7 +111,7 @@ function generateIdeasPage(ideas) {
     }
     .quote {
       max-width: calc(76 * var(--u));
-      font-size: calc(var(--size) * var(--u));
+      font-size: calc(var(--size) * var(--u) * var(--t, 1));
       line-height: 1.25;
     }
     .quote p { margin: 0; text-wrap: balance; }
@@ -127,7 +127,7 @@ function generateIdeasPage(ideas) {
       left: 0;
       right: 0;
       padding-top: calc(3 * var(--u));
-      font-size: calc(3.6 * var(--u));
+      font-size: calc(3.6 * var(--u) * var(--t, 1));
       color: #141414;
       font-style: italic;
     }
@@ -158,7 +158,6 @@ function generateIdeasPage(ideas) {
       box-shadow: 0 14px 30px -16px rgba(0,0,0,.35);
       outline: none;
     }
-    .wall .meta { display: none; }
     footer { margin: 64px 24px 48px; color: #5f5d58; }
     footer a { text-decoration: underline; text-underline-offset: 3px; }
 
@@ -171,21 +170,26 @@ function generateIdeasPage(ideas) {
     .single .poster-inner { --u: min(1cqi, 0.6cqb); padding-bottom: calc(12 * var(--u)); }
     .single.fresh .poster { animation: fade .5s ease; }
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-    .meta {
-      position: absolute;
-      left: 24px;
-      bottom: 22px;
-      right: 380px;
-      line-height: 1.4;
-    }
-    .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .controls {
+    /* The title and controls share one bar along the bottom. The title takes the room the
+       controls leave, and when that gets too narrow the controls wrap onto their own row. */
+    .bar {
       position: fixed;
+      left: 24px;
       right: 24px;
       bottom: 22px;
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px 40px;
+      line-height: 1.4;
       z-index: 2;
+    }
+    .meta { flex: 1 1 14em; }
+    .meta a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .controls {
+      display: flex;
+      gap: 20px;
     }
     .controls > * { white-space: nowrap; }
     .controls a, .controls button {
@@ -206,9 +210,10 @@ function generateIdeasPage(ideas) {
       .wall-head, .wall { padding-left: 16px; padding-right: 16px; }
       h1, h2, .intro, footer { margin-left: 16px; margin-right: 16px; }
       .wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .single .poster-inner { --u: min(1cqi, 0.62cqb); padding: 10cqi 8cqi 34cqi; }
-      .meta { left: 16px; right: 16px; bottom: 64px; }
-      .controls { left: 16px; right: 16px; gap: 16px; }
+      .single .poster-inner { --u: min(1cqi, 0.62cqb); --t: 1.3; padding: 8cqi 8cqi 56cqi; }
+      .single .quote { max-width: none; }
+      .bar { left: 16px; right: 16px; }
+      .controls { flex: 1 1 100%; gap: 16px; }
       .controls .count { display: none; }
       .controls a { margin-left: auto; }
     }
@@ -282,7 +287,6 @@ function generateIdeasPage(ideas) {
           '<div class="quote m-' + mode + '" style="--size:' + sizeFor(full ? p.quote : p.excerpt, mode) + '">' + body +
             (note ? '<div class="note">' + noteHTML(p.note) + '</div>' : '') + '</div>' +
         '</div>' +
-        '<div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a></div>' +
         '</' + tag + '>';
     }
 
@@ -310,6 +314,7 @@ function generateIdeasPage(ideas) {
       const showNote = note && !!p.note;
       const toggle = (m, on, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + on + '">' + label + '</button>';
       single.innerHTML = posterHTML(p, current, 'div', showFull, showNote) +
+        '<div class="bar"><div class="meta"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a></div>' +
         '<div class="controls">' +
           (hasFull(p) ? toggle('full', showFull, 'Full quote') : '') +
           (p.note ? toggle('note', showNote, 'Note') : '') +
@@ -317,7 +322,7 @@ function generateIdeasPage(ideas) {
           '<button type="button" data-go="-1">Previous</button>' +
           '<button type="button" data-go="1">Next</button>' +
           '<a href="#">View all</a>' +
-        '</div>';
+        '</div></div>';
       document.body.classList.add('is-single');
       document.title = p.title + ' – ideas that mean something';
     }
@@ -346,7 +351,7 @@ function generateIdeasPage(ideas) {
       }
       const btn = e.target.closest('[data-go]');
       if (btn) return go(+btn.dataset.go);
-      if (e.target.closest('a, .controls')) return;
+      if (e.target.closest('a, .bar')) return;
       go(e.clientX < window.innerWidth / 3 ? -1 : 1);
     });
 
