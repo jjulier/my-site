@@ -102,20 +102,19 @@ function generatePostersPage(links) {
     .quote.short p { text-wrap: balance; }
     .quote.full { color: color-mix(in srgb, var(--ink) 42%, var(--bg)); }
     .quote.full mark { background: none; color: var(--ink); }
-    /* The note hangs under the quote like an annotation, so the quote doesn't move. */
-    .quote { position: relative; }
-    .quote .note {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      padding-top: calc(3 * var(--u));
-      font-size: max(16px, calc(3 * var(--u)));
-      line-height: 1.35;
-      letter-spacing: normal;
+    /* My note is commentary on the piece, not part of the poster, so it sits in the frame:
+       top left, in the same font as the title and controls. */
+    .single .note {
+      position: fixed;
+      top: 22px;
+      left: 24px;
+      max-width: 26em;
       color: var(--ink);
-      font-style: var(--note-style);
+      line-height: 1.4;
+      z-index: 2;
     }
+    .single .note p { margin: 0; }
+    .single .note p + p { margin-top: 0.6em; }
 
     /* Wall */
     .wall-head {
@@ -202,6 +201,7 @@ function generatePostersPage(links) {
       .wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .single .poster-inner { --u: min(1cqi, 0.6cqb); padding: 12cqi 8cqi 30cqi; }
       .bar { left: 16px; right: 16px; }
+      .single .note { left: 16px; right: 16px; top: 16px; }
       .controls { flex: 1 1 100%; gap: 16px; }
       .controls .count { display: none; }
       .controls a { margin-left: auto; }
@@ -256,17 +256,15 @@ function generatePostersPage(links) {
       return text.split(/\\n+/).map(t => '<p>' + esc(t.trim()) + '</p>').join('');
     }
 
-    // Full quote and Note are separate: Note hangs under whichever quote is showing.
-    function posterHTML(p, i, tag, full, note) {
+    function posterHTML(p, i, tag, full) {
       const s = styles[p.style];
       const text = full ? p.quote : p.excerpt;
       const paras = full ? fullHTML(p) : p.excerpt.split(/\\n+/).map(t => '<p>' + esc(t.trim()) + '</p>').join('');
       const vars = '--bg:' + s.bg + ';--ink:' + s.ink + ';--font:' + s.font +
-        ';--style:' + (s.italic ? 'italic' : 'normal') + ';--note-style:' + (s.italic ? 'normal' : 'italic') + ';--size:' + sizeFor(text);
+        ';--style:' + (s.italic ? 'italic' : 'normal') + ';--size:' + sizeFor(text);
       const attrs = tag === 'a' ? ' href="#' + (i + 1) + '" aria-label="Poster ' + (i + 1) + ': ' + esc(p.title) + '"' : '';
       return '<' + tag + ' class="poster" style="' + vars + '"' + attrs + '>' +
-        '<div class="poster-inner"><div class="quote' + (full ? ' full' : '') + (text.length < 160 ? ' short' : '') + '">' + paras +
-          (note ? '<div class="note">' + noteHTML(p.note) + '</div>' : '') + '</div></div>' +
+        '<div class="poster-inner"><div class="quote' + (full ? ' full' : '') + (text.length < 160 ? ' short' : '') + '">' + paras + '</div></div>' +
         '</' + tag + '>';
     }
 
@@ -291,7 +289,8 @@ function generatePostersPage(links) {
       const showFull = full && p.excerpt !== p.quote;
       const showNote = note && !!p.note;
       const toggle = (m, on, label) => '<button type="button" data-mode="' + m + '" aria-pressed="' + on + '">' + label + '</button>';
-      single.innerHTML = posterHTML(p, current, 'div', showFull, showNote) +
+      single.innerHTML = posterHTML(p, current, 'div', showFull) +
+        (showNote ? '<div class="note" style="--ink:' + s.ink + '">' + noteHTML(p.note) + '</div>' : '') +
         '<div class="bar" style="--ink:' + s.ink + '">' + metaHTML(p) +
         '<div class="controls">' +
           (p.excerpt !== p.quote ? toggle('full', showFull, 'Full quote') : '') +
@@ -302,9 +301,23 @@ function generatePostersPage(links) {
           '<a href="#">View all</a>' +
         '</div></div>';
       document.body.classList.add('is-single');
+      makeRoomForNote();
       document.title = posters[current].title + ' – link quote posters';
       document.querySelector('meta[name=theme-color]')?.setAttribute('content', s.bg);
     }
+
+    // On small screens a long note can reach the quote. Only then, move the quote down to clear it.
+    function makeRoomForNote() {
+      const note = single.querySelector('.note');
+      const inner = single.querySelector('.poster-inner');
+      const quote = single.querySelector('.quote');
+      if (!inner) return;
+      inner.style.paddingTop = '';
+      if (!note) return;
+      const overlap = note.getBoundingClientRect().bottom + 24 - quote.getBoundingClientRect().top;
+      if (overlap > 0) inner.style.paddingTop = (parseFloat(getComputedStyle(inner).paddingTop) + overlap * 2) + 'px';
+    }
+    window.addEventListener('resize', () => { if (current >= 0) makeRoomForNote(); });
 
     function go(step) { location.hash = '#' + (((current + step + posters.length) % posters.length) + 1); }
 
@@ -330,7 +343,7 @@ function generatePostersPage(links) {
       }
       const btn = e.target.closest('[data-go]');
       if (btn) return go(+btn.dataset.go);
-      if (e.target.closest('a, .bar')) return;
+      if (e.target.closest('a, .bar, .note')) return;
       // Click the left third to go back, anywhere else to go forward.
       go(e.clientX < window.innerWidth / 3 ? -1 : 1);
     });
